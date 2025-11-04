@@ -125,28 +125,68 @@
         transform: scale(1.1);
         box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
       }
+
+      <!-- 💃 Animations -->
+/* Fade-in animation */
+@keyframes dance {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(-3deg); }
+  50% { transform: translateY(4px) rotate(3deg); }
+  75% { transform: translateY(-3px) rotate(-2deg); }
+}
+.animate-dance {
+  animation: dance 2.5s ease-in-out infinite;
+}
+
+/* Popup "pop-in" + wiggle animation */
+@keyframes popupWiggle {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1.05) translateY(0);
+  }
+  20% {
+    transform: scale(0.95) rotate(-2deg);
+  }
+  25% {
+    transform: scale(1.02) rotate(2deg);
+  }
+  30% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9) translateY(15px);
+  }
+}
+
+.popup-message {
+  animation: popupWiggle 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
     </style>
   </head>
 
   <body class="bg-white text-[var(--color-text)] antialiased">
-  <!-- 🔔 Notification Bar (Sitefully Indigo→Pink Theme) -->
+  <!-- 🔔 Notification Top Bar -->
 <div
   id="topbar"
-  class="fixed top-0 left-0 right-0 z-[60] bg-white text-gray-800 shadow-md"
+  class="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-indigo-600 via-pink-500 to-indigo-700 text-white text-sm md:text-base shadow-md"
 >
   <div class="container mx-auto px-4 lg:px-8 py-2">
-    <div
-      class="flex items-center justify-center text-sm md:text-base font-medium"
-    >
+    <div class="flex items-center justify-center text-center font-medium">
       <span class="flex items-center gap-2">
-        <i class="fas fa-bolt text-pink-500 animate-pulse"></i>
+        <i class="fas fa-bolt text-yellow-300 animate-pulse"></i>
         <span>
-          ✨ Special Offer: Get <strong class="text-indigo-600">20% off</strong>
-          on all web development services!
+          ✨ Get <strong class="text-white">20% off</strong> on all web development services!
         </span>
         <a
           href="Contact.html"
-          class="underline underline-offset-4 text-pink-600 hover:text-indigo-600 transition-colors ml-2"
+          class="ml-2 text-white/90 underline underline-offset-4 hover:text-yellow-300 transition-colors"
         >
           Learn More →
         </a>
@@ -155,69 +195,87 @@
   </div>
 </div>
 
-
-    <!-- 🌐 Navbar (Sitefully Indigo→Pink Theme) -->
-    <nav
-      id="navbar"
-      class="fixed top-[40px] left-0 right-0 z-50  bg-gradient-to-r from-indigo-600 via-pink-500 to-indigo-700 text-white shadow-[0_2px_20px_rgba(99,102,241,0.15)] transition-all duration-300"
-    >
-      <div class="container mx-auto px-4 lg:px-8">
-        <div class="flex items-center justify-between h-16 md:h-20">
-          <!-- Logo -->
-          <a
-            href="#"
-            class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-pink-400 rounded-lg px-1 py-1"
-          >
-            <div class="relative h-10 w-10">
-              <img
-                src="Assets/sitefully logo.png"
-                alt="Sitefully Logo"
-                class="w-full h-full object-contain rounded"
-              />
-            </div>
-            <span
-              class="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-400 to-pink-500 bg-clip-text text-transparent tracking-tight group-hover:brightness-110 transition-all"
-            >
-              Sitefully
-            </span>
-          </a>
-
-          <!-- Desktop Links -->
-          <div class="hidden md:flex items-center gap-8 font-medium">
-            <a
-              href="#"
-              class="text-white/90 hover:text-pink-400 transition-colors"
-              >Home</a
-            >
-            <a
-              href="About.html"
-              class="text-white/90 hover:text-pink-400 transition-colors"
-              >About</a
-            >
-            <a
-              href="Services.html"
-              class="text-white/90 hover:text-pink-400 transition-colors"
-              >Products & Services</a
-            >
-            <a
-              href="Contact.html"
-              class="text-white/90 hover:text-pink-400 transition-colors"
-              >Contact</a
-            >
-          </div>
-
-          <!-- Mobile Menu Button -->
-          <button
-            id="menuBtn"
-            class="md:hidden p-2 rounded-full bg-gradient-to-r from-indigo-500/30 to-pink-500/30 border border-white/20 text-white hover:from-indigo-500/50 hover:to-pink-500/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
-            aria-label="Toggle menu"
-            aria-expanded="false"
-          >
-            <i class="fa-solid fa-bars text-xl"></i>
-          </button>
+<!-- 🌐 Navigation Bar (Clean White Theme + Indigo→Pink Accents) -->
+<nav
+  id="navbar"
+  class="fixed top-[40px] left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-indigo-100 shadow-[0_4px_25px_rgba(0,0,0,0.05)] transition-all duration-300"
+>
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a
+        href="#"
+        class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-pink-400 rounded-lg px-1 py-1"
+      >
+        <div class="relative h-10 w-10">
+          <img
+            src="Assets/sitefully logo.png"
+            alt="Sitefully Logo"
+            class="w-full h-full object-contain rounded"
+          />
         </div>
+        <span
+          class="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-pink-500 bg-clip-text text-transparent tracking-tight group-hover:brightness-110 transition-all"
+        >
+          Sitefully
+        </span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8 font-medium text-gray-800">
+        <a
+          href="#"
+          class="relative nav-link group transition-all duration-300"
+        >
+          <span class="group-hover:text-pink-500 transition">Home</span>
+          <span
+            class="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300 group-hover:w-full"
+          ></span>
+        </a>
+        <a
+          href="About.html"
+          class="relative nav-link group transition-all duration-300"
+        >
+          <span class="group-hover:text-pink-500 transition">About</span>
+          <span
+            class="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300 group-hover:w-full"
+          ></span>
+        </a>
+        <a
+          href="Services.html"
+          class="relative nav-link group transition-all duration-300"
+        >
+          <span class="group-hover:text-pink-500 transition"
+            >Products & Services</span
+          >
+          <span
+            class="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300 group-hover:w-full"
+          ></span>
+        </a>
+        <a
+          href="Contact.html"
+          class="relative nav-link group transition-all duration-300"
+        >
+          <span class="group-hover:text-pink-500 transition">Contact</span>
+          <span
+            class="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300 group-hover:w-full"
+          ></span>
+        </a>
       </div>
-    </nav>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="menuBtn"
+        class="md:hidden p-2 rounded-full bg-gradient-to-r from-indigo-500/10 to-pink-500/10 border border-indigo-100 text-gray-700 hover:from-indigo-500/20 hover:to-pink-500/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
 
     <!-- 📱 Mobile Menu (Sitefully Indigo→Pink Theme) -->
     <div
@@ -401,25 +459,25 @@
       <div
         class="absolute top-0 left-0 w-full overflow-hidden leading-[0] rotate-180"
       >
-        <svg
-          class="relative block w-[calc(100%+1.3px)] h-20"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="portfolioCurveTop" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0%" stop-color="#4f46e5" />
-              <!-- Indigo -->
-              <stop offset="100%" stop-color="#ec4899" />
-              <!-- Pink -->
-            </linearGradient>
-          </defs>
-          <path
-            d="M321.39,56.27C229.6,73.46,114.81,83.11,0,64V120H1200V0C1035.45,89.85,804.78,132.31,321.39,56.27Z"
-            fill="url(#portfolioCurveTop)"
-          ></path>
-        </svg>
+       <!-- 🌊 Wave Divider (Sitefully Indigo→Pink Theme) 
+<svg
+  class="relative block w-full h-24 md:h-32"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1440 320"
+  preserveAspectRatio="none"
+>
+  <defs>
+    <linearGradient id="sitefullyWave" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#4f46e5" /> 
+      <stop offset="100%" stop-color="#ec4899" /> 
+    </linearGradient>
+  </defs>
+  <path
+    fill="url(#sitefullyWave)"
+    d="M0,64L48,74.7C96,85,192,107,288,128C384,149,480,171,576,181.3C672,192,768,192,864,181.3C960,171,1056,149,1152,128C1248,107,1344,85,1392,74.7L1440,64V320H0Z"
+  ></path>
+</svg>  -->
+
       </div>
 
       <!-- 💎 Portfolio Content -->
@@ -812,6 +870,28 @@
         </div>
       </div>
     </section>
+
+<!-- 💬 Animated WhatsApp Button with Popup -->
+<div
+  class="fixed bottom-6 right-6 z-[100] flex flex-col items-end space-y-2 group"
+>
+  <!-- Auto-Wiggling Popup -->
+  <div
+    class="popup-message opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-white shadow-lg border border-indigo-100 text-gray-800 text-sm font-medium rounded-xl px-4 py-2 mb-1"
+  >
+    Hi 👋 Need help? <span class="text-pink-500 font-semibold">Chat with us!</span>
+  </div>
+
+  <!-- Dancing WhatsApp Button -->
+  <a
+    href="https://wa.me/254712345678?text=Hello%20Sitefully!%20I'm%20interested%20in%20your%20services."
+    target="_blank"
+    class="flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 animate-dance"
+  >
+    <i class="fab fa-whatsapp text-2xl"></i>
+    <span class="font-medium text-sm md:text-base">WhatsApp Us</span>
+  </a>
+</div>
 
     <!-- 🌙 SITEFULLY FOOTER (Indigo→Pink Theme) -->
     <footer
