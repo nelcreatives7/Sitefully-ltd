@@ -10,6 +10,12 @@
       rel="stylesheet"
     />
     <style>
+      html {
+  transform: scale(0.6);
+  transform-origin: top left;
+  width: 166.67%; /* compensates for the scale to prevent layout clipping */
+}
+
       body {
         font-family: "Poppins", sans-serif;
         background: linear-gradient(to bottom right, #4f46e5, #ec4899, #f472b6);

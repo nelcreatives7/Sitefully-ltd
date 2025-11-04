@@ -18,6 +18,12 @@
     />
 
     <style>
+      html {
+  transform: scale(0.6);
+  transform-origin: top left;
+  width: 166.67%; /* compensates for the scale to prevent layout clipping */
+}
+
       /* ==== Sitefully Gradient Enhancement (Indigo → Pink) ==== */
       :root {
         --indigo: #4f46e5;

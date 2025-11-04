@@ -17,6 +17,13 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
     <style>
+
+      html {
+  transform: scale(0.6);
+  transform-origin: top left;
+  width: 166.67%; /* compensates for the scale to prevent layout clipping */
+}
+
       /* ===== Sitefully Gradient Theme Update (Indigo → Pink) ===== */
 
       /* Define new gradient and key brand colors */
@@ -172,36 +179,30 @@
   </head>
 
   <body class="bg-white text-[var(--color-text)] antialiased">
-  <!-- 🔔 Notification Top Bar 
+<!-- 🔔 Notification Top Bar -->
 <div
   id="topbar"
-  class="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-indigo-600 via-pink-500 to-indigo-700 text-white text-sm md:text-base shadow-md"
+  class="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-indigo-600 via-pink-500 to-indigo-700 text-white shadow-sm"
 >
-  <div class="container mx-auto px-4 lg:px-8 py-2">
-    <div class="flex items-center justify-center text-center font-medium">
-      <span class="flex items-center gap-2">
-        <i class="fas fa-bolt text-yellow-300 animate-pulse"></i>
-        <span>
-          ✨ Get <strong class="text-white">20% off</strong> on all web development services!
-        </span>
-        <a
-          href="Contact.html"
-          class="ml-2 text-white/90 underline underline-offset-4 hover:text-yellow-300 transition-colors"
-        >
-          Learn More →
-        </a>
+  <div class="container mx-auto px-4 lg:px-8 py-2 flex items-center justify-center text-center">
+    <p class="flex flex-wrap items-center justify-center gap-2 text-sm md:text-base font-medium leading-tight">
+      <i class="fas fa-bolt text-yellow-300 animate-pulse"></i>
+      <span>
+        ✨ <strong class="text-white">Limited Offer:</strong> Get 
+        <strong class="text-yellow-300">20% OFF</strong> on all web development services!
       </span>
-    </div>
+    </p>
   </div>
 </div>
--->
-<!-- 🌐 Navigation Bar (Clean White Theme + Indigo→Pink Accents) -->
+
+<!-- 🌐 Navigation Bar (Clean Modern UI) -->
 <nav
   id="navbar"
-  class="fixed top-[40px] left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-indigo-100 shadow-[0_4px_25px_rgba(0,0,0,0.05)] transition-all duration-300"
+  class="fixed top-[40px] left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-300"
 >
   <div class="container mx-auto px-4 lg:px-8">
     <div class="flex items-center justify-between h-16 md:h-20">
+      
       <!-- Logo -->
       <a
         href="#"
@@ -223,39 +224,25 @@
 
       <!-- Desktop Links -->
       <div class="hidden md:flex items-center gap-8 font-medium text-gray-800">
-        <a
-          href="#"
-          class="relative nav-link group transition-all duration-300"
-        >
+        <a href="#" class="relative group">
           <span class="group-hover:text-pink-500 transition">Home</span>
           <span
             class="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300 group-hover:w-full"
           ></span>
         </a>
-        <a
-          href="About.html"
-          class="relative nav-link group transition-all duration-300"
-        >
+        <a href="About.html" class="relative group">
           <span class="group-hover:text-pink-500 transition">About</span>
           <span
             class="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300 group-hover:w-full"
           ></span>
         </a>
-        <a
-          href="Services.html"
-          class="relative nav-link group transition-all duration-300"
-        >
-          <span class="group-hover:text-pink-500 transition"
-            >Products & Services</span
-          >
+        <a href="Services.html" class="relative group">
+          <span class="group-hover:text-pink-500 transition">Products & Services</span>
           <span
             class="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300 group-hover:w-full"
           ></span>
         </a>
-        <a
-          href="Contact.html"
-          class="relative nav-link group transition-all duration-300"
-        >
+        <a href="Contact.html" class="relative group">
           <span class="group-hover:text-pink-500 transition">Contact</span>
           <span
             class="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300 group-hover:w-full"
@@ -275,6 +262,7 @@
     </div>
   </div>
 </nav>
+
 
 
     <!-- 📱 Mobile Menu (Sitefully Indigo→Pink Theme) -->

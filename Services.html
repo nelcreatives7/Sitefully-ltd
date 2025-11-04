@@ -15,6 +15,12 @@
     />
 
     <style>
+      html {
+  transform: scale(0.6);
+  transform-origin: top left;
+  width: 166.67%; /* compensates for the scale to prevent layout clipping */
+}
+
       /* Base colors (Indigo → Pink gradient theme) */
       :root {
         --indigo: #4f46e5;
