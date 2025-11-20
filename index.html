@@ -113,6 +113,80 @@
       @media (max-width:768px){
         .hero-title { font-size:2rem; }
       }
+
+      /* small scoped styles for the floating button */
+      #whatsappBtn{
+        position: fixed;
+        right: 1rem;
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        background: #25D366;
+        color: #fff;
+        padding: 0.75rem;
+        border-radius: 999px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        z-index: 60;
+        transition: transform .22s ease, box-shadow .18s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        overflow: visible;
+      }
+      #whatsappBtn:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.32);
+      }
+
+      /* pulsing ring animation around the button */
+      #whatsappBtn::after{
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: rgba(37,211,102,0.12);
+        z-index: 0;
+        pointer-events: none;
+        animation: whatsapp-pulse 2200ms ease-out infinite;
+      }
+
+      @keyframes whatsapp-pulse {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.9;
+        }
+        60% {
+          transform: translate(-50%, -50%) scale(1.45);
+          opacity: 0.08;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.8);
+          opacity: 0;
+        }
+      }
+
+      /* =========================
+         PAGE TRANSITIONS (GSAP)
+         ========================= */
+      /* 1. initial state */
+      .fade-page {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      /* 2. enter (animate in) */
+      .fade-active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* 3. leave (animate out) */
+      .fade-leave {
+        opacity: 0;
+        transform: translateY(20px);
+      }
     </style>
   </head>
 
@@ -134,13 +208,7 @@
           <div class="flex items-center justify-between h-16 md:h-20">
             <div class="flex items-center space-x-4">
   <!-- Logo -->
-  <img src="Assets/logo.png" alt="Sitefully" class="w-16 h-16 object-contain rounded-md"/>
-
-  <!-- Name + Motto -->
-  <div class="flex flex-col">
-    <h2 class="text-2xl font-extrabold text-bronze">Sitefully</h2>
-    <p class="text-xs text-cyan-600">The brain of great websites</p>
-  </div>
+  <img src="Assets/sitefully logo.png" alt="Sitefully" class="w-20 h-20 object-contain rounded-md"/>
 </div>
 
 
@@ -529,13 +597,13 @@
               <div class="flex flex-col items-center space-y-2">
   <div class="flex items-center space-x-4">
   <!-- Logo -->
-  <img src="Assets/logo.png" alt="Sitefully" class="w-16 h-16 object-contain rounded-md"/>
+  <img src="Assets/sitefully logo.png" alt="Sitefully" class="w-20 h-20 object-contain rounded-md"/>
 
-  <!-- Name + Motto -->
+  <!-- Name + Motto 
   <div class="flex flex-col">
     <h2 class="text-2xl font-extrabold text-bronze">Sitefully</h2>
     <p class="text-xs text-cyan-600">The brain of great websites</p>
-  </div>
+  </div>-->
 </div>
 
 </div>
@@ -749,5 +817,37 @@
         window.addEventListener("load", ()=> setTimeout(type, 400));
       })();
     </script>
+
+    <!-- Floating WhatsApp Button (replaced: removed alert + overlap fix) -->
+<a id="whatsappBtn"
+   href="https://wa.me/2451163968863?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20Sitefully."
+   target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <i class="fab fa-whatsapp fa-lg" aria-hidden="true"></i>
+</a>
+
+<script>
+  // keep WhatsApp button from overlapping footer: push it up when footer enters viewport
+  (function(){
+    const btn = document.getElementById('whatsappBtn');
+    const footer = document.querySelector('footer');
+    if (!btn || !footer) return;
+
+    function adjust() {
+      const footerRect = footer.getBoundingClientRect();
+      const overlap = window.innerHeight - footerRect.top;
+      if (overlap > 0) {
+        // move the button up by the overlap amount + a small gap (16px)
+        btn.style.transform = `translateY(-${overlap + 16}px)`;
+      } else {
+        btn.style.transform = 'translateY(0)';
+      }
+    }
+
+    window.addEventListener('scroll', adjust, { passive: true });
+    window.addEventListener('resize', adjust);
+    // initial check
+    adjust();
+  })();
+</script>
   </body>
 </html>
