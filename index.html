@@ -13,6 +13,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
+<!-- Include Google Fonts in <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
@@ -256,6 +258,12 @@
   font-size: 0.85rem;
   font-weight: 600;
 }
+@media (min-width: 1024px) {
+  #cardsContainer.centered {
+    justify-content: center !important;
+  }
+}
+
     </style>
   </head>
 
@@ -272,102 +280,113 @@
       </div>
 
       <!-- NAVBAR -->
-      <nav id="navbar" class="bg-[var(--glass)] backdrop-blur-md border-b border-white/5">
-        <div class="container mx-auto px-4 lg:px-8">
-          <div class="flex items-center justify-between h-16 md:h-20">
-            <div class="flex items-center space-x-4">
-  <!-- Logo -->
-  <img src="Assets/sitefully logo.png" alt="Sitefully" class="w-20 h-20 object-contain rounded-md"/>
-</div>
+<nav id="navbar" class="bg-[var(--glass)] backdrop-blur-md border-b border-white/5">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      
+      <!-- Logo Left Side -->
+      <div class="flex items-center gap-3">
+        <!-- Logo Image (no gradient box) -->
+        <img src="Assets/sitefully logo.png" alt="Sitefully" class="w-12 h-12 object-contain"/>
 
+        <!-- Logo Text 
+        <div class="flex flex-col">
+          <span class="text-xl sm:text-2xl md:text-3xl font-extrabold uppercase" style="font-family: 'Montserrat', sans-serif; color: white;">
+            SITEFULLY
+          </span>
+          <span class="text-xs sm:text-sm md:text-base font-medium mt-1" style="font-family: 'Roboto', sans-serif; color: var(--soft-peach);">
+            Crafting Digital Excellence
+          </span>
+        </div> -->
+      </div>
 
-            <!-- Desktop Links -->
-            <div class="hidden md:flex items-center gap-8 font-medium text-[var(--light-mint)]">
-              <a href="#" class="relative nav-underline">Home</a>
-              <a href="About.html" class="relative nav-underline">About Us</a>
-              <a href="Portfolio.html" class="relative nav-underline">Portfolio</a>
-              <a href="Services.html" class="relative nav-underline">Services</a>
-              <a href="Contact.html" class="relative nav-underline">Contact</a>
-              <a href="pricing.html" class="relative nav-underline">Pricing</a>
-              <a href="faq.html" class="relative nav-underline">FAQ</a>
-            </div>
+      <!-- Desktop Links Right Side -->
+      <div class="hidden md:flex items-center gap-8 font-medium text-[var(--light-mint)]">
+        <a href="#" class="relative nav-underline">Home</a>
+        <a href="About.html" class="relative nav-underline">About Us</a>
+        <a href="Portfolio.html" class="relative nav-underline">Portfolio</a>
+        <a href="Services.html" class="relative nav-underline">Services</a>
+        <a href="Contact.html" class="relative nav-underline">Contact</a>
+        <a href="pricing.html" class="relative nav-underline">Pricing</a>
+        <a href="faq.html" class="relative nav-underline">FAQ</a>
+      </div>
 
-            <!-- Mobile menu button -->
-            <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false"
-              class="md:hidden p-2 rounded-full border border-white/6 bg-[rgba(255,255,255,0.02)] text-[var(--light-mint)] hover:bg-[rgba(255,255,255,0.04)] transition">
-              <i class="fa-solid fa-bars"></i>
-            </button>
-          </div>
-        </div>
-      </nav>
+      <!-- Mobile Menu Button -->
+      <button id="menuBtn" aria-label="Toggle menu" aria-expanded="false"
+        class="md:hidden p-2 rounded-full border border-white/6 bg-[rgba(255,255,255,0.02)] text-[var(--light-mint)] hover:bg-[rgba(255,255,255,0.04)] transition">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
     </div>
 
-   <!-- Mobile Menu Drawer -->
+   <!-- Mobile Menu Drawer - Brighter Version -->
 <div id="mobileMenu"
-  class="fixed inset-0 z-[9999] md:hidden opacity-0 pointer-events-none
-         transition-opacity duration-300">
+  class="fixed inset-0 z-[9999] md:hidden opacity-0 pointer-events-none transition-opacity duration-300">
 
   <!-- Overlay -->
   <div id="overlay"
-    class="absolute inset-0 bg-[rgba(12,14,13,0.6)] backdrop-blur-sm opacity-0
-           transition-opacity duration-300"></div>
+    class="absolute inset-0 bg-[rgba(12,14,13,0.45)] backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
 
   <!-- Drawer -->
   <nav id="drawer" aria-label="Mobile Navigation"
-    class="absolute top-0 right-0 bottom-0 w-80 bg-[var(--dark-teal)]
+    class="absolute top-0 right-0 bottom-0 w-80 bg-[rgba(44,53,49,0.95)]  <!-- slightly lighter dark-teal -->
            border-l border-white/10 shadow-xl rounded-l-2xl
            transform translate-x-full transition-transform duration-300">
 
     <!-- Header -->
     <div class="flex items-center justify-between p-6 border-b border-white/10">
       <span class="text-lg font-semibold text-[var(--light-mint)]">Menu</span>
-      <button id="closeMenu" class="p-2 rounded-full bg-[rgba(255,255,255,0.04)] text-[var(--light-mint)]">
+      <button id="closeMenu" class="p-2 rounded-full bg-[rgba(255,255,255,0.08)] text-[var(--light-mint)] hover:bg-[rgba(255,255,255,0.15)] transition">
         <i class="fa-solid fa-xmark text-xl"></i>
       </button>
     </div>
 
     <!-- Links -->
     <div class="p-6 space-y-5 text-[var(--light-mint)]">
-      <a href="#" class="flex items-center gap-3 text-lg font-medium">
+      <a href="#" class="flex items-center gap-3 text-lg font-medium hover:text-[var(--cyan-teal)] transition-colors">
         <i class="fa-solid fa-home w-6 text-[var(--cyan-teal)]"></i> Home
       </a>
 
-      <a href="About.html" class="flex items-center gap-3 text-lg font-medium">
+      <a href="About.html" class="flex items-center gap-3 text-lg font-medium hover:text-[var(--cyan-teal)] transition-colors">
         <i class="fa-solid fa-info-circle w-6 text-[var(--cyan-teal)]"></i> About Us
       </a>
 
-      <a href="Portfolio.html" class="flex items-center gap-3 text-lg font-medium">
+      <a href="Portfolio.html" class="flex items-center gap-3 text-lg font-medium hover:text-[var(--cyan-teal)] transition-colors">
         <i class="fa-solid fa-image w-6 text-[var(--cyan-teal)]"></i> Portfolio
       </a>
 
-      <a href="Services.html" class="flex items-center gap-3 text-lg font-medium">
+      <a href="Services.html" class="flex items-center gap-3 text-lg font-medium hover:text-[var(--cyan-teal)] transition-colors">
         <i class="fa-solid fa-briefcase w-6 text-[var(--cyan-teal)]"></i> Services
       </a>
 
-      <a href="Contact.html" class="flex items-center gap-3 text-lg font-medium">
+      <a href="Contact.html" class="flex items-center gap-3 text-lg font-medium hover:text-[var(--cyan-teal)] transition-colors">
         <i class="fa-solid fa-envelope w-6 text-[var(--cyan-teal)]"></i> Contact
       </a>
 
-      <a href="pricing.html" class="flex items-center gap-3 text-lg font-medium">
+      <a href="pricing.html" class="flex items-center gap-3 text-lg font-medium hover:text-[var(--cyan-teal)] transition-colors">
         <i class="fa-solid fa-tag w-6 text-[var(--cyan-teal)]"></i> Pricing
       </a>
 
-      <a href="faq.html" class="flex items-center gap-3 text-lg font-medium">
+      <a href="faq.html" class="flex items-center gap-3 text-lg font-medium hover:text-[var(--cyan-teal)] transition-colors">
         <i class="fa-solid fa-question-circle w-6 text-[var(--cyan-teal)]"></i> FAQ
       </a>
 
       <!-- CTA Box -->
-      <div class="mt-6 bg-[rgba(209,232,226,0.05)] p-4 rounded-lg border border-white/5">
+      <div class="mt-6 bg-[rgba(209,232,226,0.12)] p-4 rounded-lg border border-white/5">
         <h3 class="font-semibold text-[var(--light-mint)]">Join Our Journey</h3>
-        <p class="text-sm text-[var(--light-mint)]/70 mb-3">Have a project? Let's discuss it.</p>
+        <p class="text-sm text-[var(--light-mint)]/80 mb-3">Have a project? Let's discuss it.</p>
         <a href="Contact.html"
-           class="inline-block px-4 py-2 bg-[var(--cyan-teal)] text-[#D1E8E2] rounded-md text-sm">
+           class="inline-block px-4 py-2 bg-[var(--cyan-teal)] text-[var(--light-mint)] rounded-md text-sm hover:bg-[var(--soft-peach)] hover:text-[var(--dark-teal)] transition">
           Get in Touch
         </a>
       </div>
     </div>
   </nav>
 </div>
+
 
 
     <!-- Spacer so content not hidden under fixed header -->
@@ -412,156 +431,197 @@
       <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[var(--dark-teal)] to-transparent pointer-events-none"></div>
 
 </header>
+
+
+
+<!-- WHY CHOOSE US SECTION -->
+<section class="py-20" style="background-color: var(--dark-teal); color: white;">
+  <div class="container mx-auto px-6 lg:px-20">
+    
+    <!-- Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4" style="color: var(--soft-peach);">Why Hire Us for Your Next Project</h2>
+      <p class="max-w-2xl mx-auto" style="color: var(--light-mint);">
+        At Sitefully, we architect cutting-edge digital experiences where creativity meets innovation. We design and build immersive, future-ready solutions engineered for clarity, performance, and measurable impact.
+      </p>
+    </div>
+
+    <!-- Rhombus Images Row -->
+    <div class="flex justify-center items-end gap-6 mb-12 flex-wrap">
+      <!-- Rhombus Image 1 -->
+      <div class="transform rotate-45 w-32 h-32 overflow-hidden shadow-lg rounded-lg hover:scale-105 transition-transform duration-300">
+  <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80" 
+       alt="Modern Workspace" class="w-full h-full object-cover -rotate-45">
+</div>
+
+
+      <!-- Rhombus Image 2 -->
+      <div class="transform rotate-45 w-40 h-40 overflow-hidden mt-6 shadow-lg">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=300" 
+             alt="Design" class="w-full h-full object-cover -rotate-45">
+      </div>
+
+      <!-- Rhombus Image 3 -->
+      <div class="transform rotate-45 w-48 h-48 overflow-hidden mt-12 shadow-lg">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=300" 
+             alt="Creative" class="w-full h-full object-cover -rotate-45">
+      </div>
+
+      <!-- Rhombus Image 4 -->
+      <div class="transform rotate-45 w-40 h-40 overflow-hidden mt-6 shadow-lg">
+        <img src="Assets/photo.avif" 
+             alt="Innovation" class="w-full h-full object-cover -rotate-45">
+      </div>
+
+      <!-- Rhombus Image 5 -->
+      <div class="transform rotate-45 w-32 h-32 overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=crop&h=300&w=300" 
+             alt="Strategy" class="w-full h-full object-cover -rotate-45">
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="text-center">
+      <a href="About.html" class="inline-block px-8 py-4 rounded-full font-bold text-white shadow-lg transition-transform hover:scale-105"
+         style="background: linear-gradient(90deg, var(--cyan-teal), var(--bronze));">
+        Learn More
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
    
-    <!-- SERVICES CAROUSEL -->
-<section class="max-w-7xl mx-auto px-4 py-20">
+ <!-- SERVICES CAROUSEL - COMPACT FULL VERSION -->
+<section class="max-w-7xl mx-auto px-4 py-16" style="--dark-teal:#2C3531; --cyan-teal:#116466; --bronze:#D9B08C; --soft-peach:#FFCB9A; --light-mint:#D1E8E2;">
   <!-- Header -->
-  <div class="text-center mb-12">
-    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 gradient-text">Our Services</h2>
-    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+  <div class="text-center mb-10">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-3" style="background: linear-gradient(90deg, var(--cyan-teal), var(--bronze)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      Our Services
+    </h2>
+    <p class="text-base md:text-lg max-w-3xl mx-auto" style="color: var(--light-mint);">
       Comprehensive web development solutions from concept to deployment — crafted with Sitefully precision.
     </p>
   </div>
 
   <!-- Tabs -->
-  <div class="flex flex-wrap gap-4 mb-8 justify-center">
-    <button class="tab-btn active px-6 py-3 rounded-full font-semibold border-2 border-[var(--cyan-teal)] text-[var(--cyan-teal)] bg-[rgba(17,100,102,0.06)]" data-category="all">All Services</button>
-    <button class="tab-btn px-6 py-3 rounded-full font-semibold border-2 border-gray-300 text-gray-800 bg-white" data-category="development">Development</button>
-    <button class="tab-btn px-6 py-3 rounded-full font-semibold border-2 border-gray-300 text-gray-800 bg-white" data-category="frontend">Frontend</button>
-    <button class="tab-btn px-6 py-3 rounded-full font-semibold border-2 border-gray-300 text-gray-800 bg-white" data-category="backend">Backend</button>
-    <button class="tab-btn px-6 py-3 rounded-full font-semibold border-2 border-gray-300 text-gray-800 bg-white" data-category="deployment">Deployment</button>
+  <div class="flex flex-wrap gap-3 mb-6 justify-center">
+    <button class="tab-btn active px-4 py-2 rounded-full font-semibold border-2 border-[var(--cyan-teal)] text-[var(--cyan-teal)] bg-[rgba(17,100,102,0.1)]" data-category="all">All Services</button>
+    <button class="tab-btn px-4 py-2 rounded-full font-semibold border-2 border-[var(--dark-teal)] text-[var(--dark-teal)] bg-[var(--light-mint)]" data-category="development">Development</button>
+    <button class="tab-btn px-4 py-2 rounded-full font-semibold border-2 border-[var(--dark-teal)] text-[var(--dark-teal)] bg-[var(--light-mint)]" data-category="frontend">Frontend</button>
+    <button class="tab-btn px-4 py-2 rounded-full font-semibold border-2 border-[var(--dark-teal)] text-[var(--dark-teal)] bg-[var(--light-mint)]" data-category="backend">Backend</button>
+    <button class="tab-btn px-4 py-2 rounded-full font-semibold border-2 border-[var(--dark-teal)] text-[var(--dark-teal)] bg-[var(--light-mint)]" data-category="deployment">Deployment</button>
   </div>
 
   <!-- Carousel -->
   <div class="relative">
-    <button id="prevBtn" class="arrow-btn arrow-left"> 
-      <svg viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <button id="prevBtn" class="arrow-btn arrow-left text-[var(--cyan-teal)]"> 
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-5 h-5"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <button id="nextBtn" class="arrow-btn arrow-right"> 
-      <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <button id="nextBtn" class="arrow-btn arrow-right text-[var(--cyan-teal)]"> 
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-5 h-5"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
 
     <div class="overflow-hidden">
-      <div id="cardsContainer" class="flex gap-4">
-        <!-- Card 1 -->
-        <div class="card min-w-full md:min-w-[calc(50%-8px)] lg:min-w-[calc(33%-10px)]" data-category="development">
-          <div class="h-64 relative overflow-hidden"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&q=80"><div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div></div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold mb-3">Website Creation — Frontend & Django</h3>
-            <p class="text-gray-600 mb-4">End-to-end development: responsive frontends, robust Django backends.</p>
-            <div class="flex gap-2 mb-4"><span class="tag-pill text-[var(--cyan-teal)]">Django</span><span class="tag-pill text-[var(--dark-teal)]">Full-Stack</span></div>
-            <button class="w-full py-3 rounded-full text-white font-bold" style="background: linear-gradient(90deg,var(--cyan-teal),var(--bronze));">Get Started</button>
+      <div id="cardsContainer" class="flex gap-3">
+
+        <!-- Card 1: Development -->
+        <div class="card min-w-full md:min-w-[calc(50%-6px)] lg:min-w-[calc(33%-8px)]" data-category="development">
+          <div class="h-48 relative overflow-hidden rounded-lg shadow-lg">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&q=80">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--dark-teal)]/40 to-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-xl font-bold mb-2" style="color: var(--soft-peach);">Website Creation — Frontend & Django</h3>
+            <p class="mb-3 text-sm" style="color: var(--light-mint);">End-to-end development: responsive frontends, robust Django backends.</p>
+            <div class="flex gap-2 mb-3">
+              <span class="tag-pill text-[var(--cyan-teal)] border-2 border-[var(--cyan-teal)] rounded-full px-2 py-1 text-xs">Django</span>
+              <span class="tag-pill text-[var(--dark-teal)] border-2 border-[var(--dark-teal)] rounded-full px-2 py-1 text-xs">Full-Stack</span>
+            </div>
+            <a href="Services.html">
+              <button class="w-full py-2 rounded-full font-bold text-white text-sm" style="background: linear-gradient(90deg, var(--cyan-teal), var(--bronze));">Get Started</button>
+            </a>
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="card min-w-full md:min-w-[calc(50%-8px)] lg:min-w-[calc(33%-10px)]" data-category="backend">
-          <div class="h-64 relative overflow-hidden"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80"><div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div></div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold mb-3">Full-Stack Django Development</h3>
-            <p class="text-gray-600 mb-4">Architecture, models, templates, auth, admin customization.</p>
-            <div class="flex gap-2 mb-4"><span class="tag-pill text-[var(--dark-teal)]">Architecture</span><span class="tag-pill text-[var(--cyan-teal)]">Models</span></div>
-            <button class="w-full py-3 rounded-full text-white font-bold" style="background: linear-gradient(90deg,var(--cyan-teal),var(--bronze));">Get Started</button>
+        <!-- Card 2: Backend -->
+        <div class="card min-w-full md:min-w-[calc(50%-6px)] lg:min-w-[calc(33%-8px)]" data-category="backend">
+          <div class="h-48 relative overflow-hidden rounded-lg shadow-lg">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--dark-teal)]/40 to-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-xl font-bold mb-2" style="color: var(--soft-peach);">Full-Stack Django Development</h3>
+            <p class="mb-3 text-sm" style="color: var(--light-mint);">Architecture, models, templates, auth, admin customization.</p>
+            <div class="flex gap-2 mb-3">
+              <span class="tag-pill text-[var(--dark-teal)] border-2 border-[var(--dark-teal)] rounded-full px-2 py-1 text-xs">Architecture</span>
+              <span class="tag-pill text-[var(--cyan-teal)] border-2 border-[var(--cyan-teal)] rounded-full px-2 py-1 text-xs">Models</span>
+            </div>
+            <a href="Services.html">
+              <button class="w-full py-2 rounded-full font-bold text-white text-sm" style="background: linear-gradient(90deg, var(--cyan-teal), var(--bronze));">Get Started</button>
+            </a>
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="card min-w-full md:min-w-[calc(50%-8px)] lg:min-w-[calc(33%-10px)]" data-category="frontend">
-          <div class="h-64 relative overflow-hidden"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80"><div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div></div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold mb-3">Frontend: HTML, CSS & JS</h3>
-            <p class="text-gray-600 mb-4">Pixel-perfect UIs using Tailwind, modern JS and progressive enhancement.</p>
-            <div class="flex gap-2 mb-4"><span class="tag-pill text-[var(--cyan-teal)]">Tailwind</span><span class="tag-pill text-[var(--peach)]">JS</span></div>
-            <button class="w-full py-3 rounded-full text-white font-bold" style="background: linear-gradient(90deg,var(--cyan-teal),var(--bronze));">Get Started</button>
+        <!-- Card 3: Frontend -->
+        <div class="card min-w-full md:min-w-[calc(50%-6px)] lg:min-w-[calc(33%-8px)]" data-category="frontend">
+          <div class="h-48 relative overflow-hidden rounded-lg shadow-lg">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--dark-teal)]/40 to-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-xl font-bold mb-2" style="color: var(--soft-peach);">Frontend: HTML, CSS & JS</h3>
+            <p class="mb-3 text-sm" style="color: var(--light-mint);">Pixel-perfect UIs using Tailwind, modern JS and progressive enhancement.</p>
+            <div class="flex gap-2 mb-3">
+              <span class="tag-pill text-[var(--cyan-teal)] border-2 border-[var(--cyan-teal)] rounded-full px-2 py-1 text-xs">Tailwind</span>
+              <span class="tag-pill text-[var(--soft-peach)] border-2 border-[var(--soft-peach)] rounded-full px-2 py-1 text-xs">JS</span>
+            </div>
+            <a href="Services.html">
+              <button class="w-full py-2 rounded-full font-bold text-white text-sm" style="background: linear-gradient(90deg, var(--cyan-teal), var(--bronze));">Get Started</button>
+            </a>
           </div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="card min-w-full md:min-w-[calc(50%-8px)] lg:min-w-[calc(33%-10px)]" data-category="backend">
-          <div class="h-64 relative overflow-hidden"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"><div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div></div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold mb-3">APIs & Integrations (DRF)</h3>
-            <p class="text-gray-600 mb-4">Django REST Framework, payments, analytics, JSON endpoints.</p>
-            <div class="flex gap-2 mb-4"><span class="tag-pill text-[var(--mint)]">REST API</span></div>
-            <button class="w-full py-3 rounded-full text-white font-bold" style="background: linear-gradient(90deg,var(--cyan-teal),var(--bronze));">Get Started</button>
+        <!-- Card 4: Backend / APIs -->
+        <div class="card min-w-full md:min-w-[calc(50%-6px)] lg:min-w-[calc(33%-8px)]" data-category="backend">
+          <div class="h-48 relative overflow-hidden rounded-lg shadow-lg">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--dark-teal)]/40 to-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-xl font-bold mb-2" style="color: var(--soft-peach);">APIs & Integrations (DRF)</h3>
+            <p class="mb-3 text-sm" style="color: var(--light-mint);">Django REST Framework, payments, analytics, JSON endpoints.</p>
+            <div class="flex gap-2 mb-3">
+              <span class="tag-pill text-[var(--light-mint)] border-2 border-[var(--light-mint)] rounded-full px-2 py-1 text-xs">REST API</span>
+            </div>
+            <a href="Services.html">
+              <button class="w-full py-2 rounded-full font-bold text-white text-sm" style="background: linear-gradient(90deg, var(--cyan-teal), var(--bronze));">Get Started</button>
+            </a>
           </div>
         </div>
 
-        <!-- Card 5 -->
-        <div class="card min-w-full md:min-w-[calc(50%-8px)] lg:min-w-[calc(33%-10px)]" data-category="deployment">
-          <div class="h-64 relative overflow-hidden"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80"><div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div></div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold mb-3">Deployment & Maintenance</h3>
-            <p class="text-gray-600 mb-4">Docker, CI/CD, HTTPS, monitoring, backups.</p>
-            <div class="flex gap-2 mb-4"><span class="tag-pill text-[var(--cyan-teal)]">Docker</span></div>
-            <button class="w-full py-3 rounded-full text-white font-bold" style="background: linear-gradient(90deg,var(--cyan-teal),var(--bronze));">Get Started</button>
+        <!-- Card 5: Deployment -->
+        <div class="card min-w-full md:min-w-[calc(50%-6px)] lg:min-w-[calc(33%-8px)]" data-category="deployment">
+          <div class="h-48 relative overflow-hidden rounded-lg shadow-lg">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--dark-teal)]/40 to-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-xl font-bold mb-2" style="color: var(--soft-peach);">Deployment & Maintenance</h3>
+            <p class="mb-3 text-sm" style="color: var(--light-mint);">Docker, CI/CD, HTTPS, monitoring, backups.</p>
+            <div class="flex gap-2 mb-3">
+              <span class="tag-pill text-[var(--cyan-teal)] border-2 border-[var(--cyan-teal)] rounded-full px-2 py-1 text-xs">Docker</span>
+            </div>
+            <a href="Services.html">
+              <button class="w-full py-2 rounded-full font-bold text-white text-sm" style="background: linear-gradient(90deg, var(--cyan-teal), var(--bronze));">Get Started</button>
+            </a>
           </div>
         </div>
+
       </div>
     </div>
   </div>
-</section>
-
-
-   <!-- HERO (Upgraded About → Hero) -->
-<section id="hero-section" class="relative min-h-[720px] py-24 md:py-32 overflow-hidden">
-
-  <!-- Background Glow Effects -->
-  <div class="absolute inset-0 pointer-events-none opacity-[0.12]">
-    <div class="w-72 h-72 bg-[var(--accent-pink)] blur-[140px] absolute top-10 left-10"></div>
-    <div class="w-80 h-80 bg-[var(--accent-indigo)] blur-[160px] absolute bottom-10 right-10"></div>
-  </div>
-
-  <div class="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
-
-    <div class="grid md:grid-cols-2 gap-16 items-center">
-
-      <!-- Text Block -->
-      <div class="space-y-8" data-aos="fade-up">
-
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-[var(--light-mint)]">
-          <span class="gradient-text">Who We Are</span>
-        </h1>
-
-        <p class="text-[var(--light-mint)]/85 text-lg md:text-xl leading-relaxed max-w-xl">
-          At <span class="accent-bronze font-semibold">Sitefully</span>, we architect 
-          cutting-edge digital experiences where 
-          <span class="text-[var(--accent-indigo)] font-medium">creativity</span> meets 
-          <span class="text-[var(--accent-pink)] font-medium">innovation</span>.  
-          We design and build immersive, future-ready solutions engineered for 
-          clarity, performance, and measurable impact.
-        </p>
-
-        <div class="pt-4 flex flex-wrap gap-4">
-          <a href="About.html" 
-             class="btn-primary px-8 py-4 rounded-full inline-flex items-center gap-3 text-lg shadow-lg hover:scale-[1.03] transition-all">
-            Learn More
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-
-          <a href="portfolio.html" 
-             class="px-8 py-4 rounded-full border border-[var(--light-mint)]/30 text-[var(--light-mint)] text-lg hover:bg-white/10 transition-all">
-            See Portfolio
-          </a>
-        </div>
-
-      </div>
-
-      <!-- Image Block -->
-      <div class="relative" data-aos="fade-left">
-
-        <!-- Glow Behind Image -->
-        <div class="absolute inset-0 bg-[rgba(17,100,102,0.09)] blur-3xl rounded-3xl -rotate-3"></div>
-
-        <!-- Hero Image -->
-  <div class="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-  <img
-    src="Assets/photo.avif"
-    alt="Modern workspace"
-    class="w-full h-auto object-cover"
-  />
-</div>
-      </div>
 </section>
 
   <!-- TESTIMONIALS -->
@@ -680,53 +740,54 @@
   </div>
 </section>
 
- <section id="stats" class="py-24 relative overflow-hidden">
+  <!-- STATS SECTION - COMPACT VERSION -->
+<section id="stats" class="py-16 relative overflow-hidden">
   <!-- soft background glow -->
   <div class="absolute inset-0 opacity-[0.06] pointer-events-none">
-    <div class="w-80 h-80 bg-[var(--cyan-teal)] blur-[140px] absolute top-10 left-10"></div>
-    <div class="w-96 h-96 bg-[var(--soft-peach)] blur-[160px] absolute bottom-10 right-10"></div>
+    <div class="w-60 h-60 bg-[var(--cyan-teal)] blur-[120px] absolute top-10 left-10"></div>
+    <div class="w-80 h-80 bg-[var(--soft-peach)] blur-[140px] absolute bottom-10 right-10"></div>
   </div>
 
   <div class="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
-    <div class="text-center mb-14">
-      <h2 class="text-3xl md:text-5xl font-extrabold gradient-text">Our Impact</h2>
-      <p class="text-[var(--light-mint)]/80 mt-3 max-w-xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-extrabold gradient-text">Our Impact</h2>
+      <p class="text-[var(--light-mint)]/80 mt-2 max-w-xl mx-auto text-base md:text-lg">
         Trusted by brands, businesses and organizations to deliver cutting-edge digital solutions.
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <!-- Completed Projects -->
-      <div class="p-8 rounded-3xl card-glass text-center border border-white/5 shadow-soft">
-        <i class="fa-solid fa-briefcase text-4xl text-[var(--soft-peach)] mb-4"></i>
-        <h3 class="text-5xl font-extrabold gradient-text count-number" data-start="15" data-end="21">15</h3>
-        <p class="mt-3 text-[var(--light-mint)]/80 text-lg">Completed Projects</p>
+      <div class="p-6 rounded-2xl card-glass text-center border border-white/5 shadow-soft">
+        <i class="fa-solid fa-briefcase text-3xl text-[var(--soft-peach)] mb-3"></i>
+        <h3 class="text-3xl md:text-4xl font-extrabold gradient-text count-number" data-start="15" data-end="21">15</h3>
+        <p class="mt-2 text-[var(--light-mint)]/80 text-sm md:text-base">Completed Projects</p>
       </div>
 
-
-      <!-- Client Satisfaction (Static) -->
-      <div class="p-8 rounded-3xl card-glass text-center border border-white/5 shadow-soft">
-        <i class="fa-solid fa-star text-4xl text-[var(--bronze)] mb-4"></i>
-        <h3 class="text-5xl font-extrabold gradient-text">98%</h3>
-        <p class="mt-3 text-[var(--light-mint)]/80 text-lg">Client Satisfaction</p>
+      <!-- Client Satisfaction -->
+      <div class="p-6 rounded-2xl card-glass text-center border border-white/5 shadow-soft">
+        <i class="fa-solid fa-star text-3xl text-[var(--bronze)] mb-3"></i>
+        <h3 class="text-3xl md:text-4xl font-extrabold gradient-text">98%</h3>
+        <p class="mt-2 text-[var(--light-mint)]/80 text-sm md:text-base">Client Satisfaction</p>
       </div>
 
       <!-- Happy Clients -->
-      <div class="p-8 rounded-3xl card-glass text-center border border-white/5 shadow-soft">
-        <i class="fa-solid fa-users text-4xl text-[var(--cyan-teal)] mb-4"></i>
-        <h3 class="text-5xl font-extrabold gradient-text count-number" data-start="12" data-end="21">12</h3>
-        <p class="mt-3 text-[var(--light-mint)]/80 text-lg">Happy Clients</p>
+      <div class="p-6 rounded-2xl card-glass text-center border border-white/5 shadow-soft">
+        <i class="fa-solid fa-users text-3xl text-[var(--cyan-teal)] mb-3"></i>
+        <h3 class="text-3xl md:text-4xl font-extrabold gradient-text count-number" data-start="12" data-end="21">12</h3>
+        <p class="mt-2 text-[var(--light-mint)]/80 text-sm md:text-base">Happy Clients</p>
       </div>
 
-      <!-- Awards Earned (Static) -->
-      <div class="p-8 rounded-3xl card-glass text-center border border-white/5 shadow-soft">
-        <i class="fa-solid fa-award text-4xl text-[var(--soft-peach)] mb-4"></i>
-        <h3 class="text-5xl font-extrabold gradient-text">12</h3>
-        <p class="mt-3 text-[var(--light-mint)]/80 text-lg">Awards Earned</p>
+      <!-- Awards Earned -->
+      <div class="p-6 rounded-2xl card-glass text-center border border-white/5 shadow-soft">
+        <i class="fa-solid fa-award text-3xl text-[var(--soft-peach)] mb-3"></i>
+        <h3 class="text-3xl md:text-4xl font-extrabold gradient-text">12</h3>
+        <p class="mt-2 text-[var(--light-mint)]/80 text-sm md:text-base">Awards Earned</p>
       </div>
     </div>
   </div>
 </section>
+
 
     
     <!-- Floating WhatsApp Button (replaced: removed alert + overlap fix) -->
@@ -1046,8 +1107,8 @@
 
   window.addEventListener('scroll', handleScroll);
 
-  // Carousel functionality for services
-  (function(){
+ // Carousel functionality for services
+(function(){
   let currentIndex=0;
   const container=document.getElementById('cardsContainer');
   const cards=Array.from(document.querySelectorAll('.card'));
@@ -1055,11 +1116,20 @@
   const nextBtn=document.getElementById('nextBtn');
   const tabBtns=Array.from(document.querySelectorAll('.tab-btn'));
 
-  function getCardsPerView(){ const w=window.innerWidth; if(w>=1024)return 3; if(w>=768)return 2; return 1; }
-  function getVisibleCards(){ return cards.filter(c=>c.style.display!=='none'); }
+  function getCardsPerView(){ 
+    const w=window.innerWidth; 
+    if(w>=1024)return 3; 
+    if(w>=768)return 2; 
+    return 1; 
+  }
+
+  function getVisibleCards(){ 
+    return cards.filter(c=>c.style.display!=='none'); 
+  }
 
   function updateCarousel(){
-    const visible=getVisibleCards(); if(!visible.length)return;
+    const visible=getVisibleCards(); 
+    if(!visible.length)return;
     const cpv=getCardsPerView();
     const maxIndex=Math.max(0,visible.length-cpv);
     currentIndex=Math.min(currentIndex,maxIndex);
@@ -1071,22 +1141,54 @@
   }
 
   function updateArrowVisibility(category){
-    if(category==='all'||category==='backend'){ prevBtn.style.display='flex'; nextBtn.style.display='flex'; }
-    else { prevBtn.style.display='none'; nextBtn.style.display='none'; }
+    if(category==='all'||category==='backend'){ 
+      prevBtn.style.display='flex'; 
+      nextBtn.style.display='flex'; 
+    } else { 
+      prevBtn.style.display='none'; 
+      nextBtn.style.display='none'; 
+    }
   }
 
-  prevBtn.addEventListener('click',()=>{ if(currentIndex>0){ currentIndex--; updateCarousel(); } });
-  nextBtn.addEventListener('click',()=>{ const cpv=getCardsPerView(); const maxIndex=Math.max(0,getVisibleCards().length-cpv); if(currentIndex<maxIndex){ currentIndex++; updateCarousel(); } });
+  prevBtn.addEventListener('click',()=>{
+    if(currentIndex>0){ 
+      currentIndex--; 
+      updateCarousel(); 
+    }
+  });
+
+  nextBtn.addEventListener('click',()=>{
+    const cpv=getCardsPerView(); 
+    const maxIndex=Math.max(0,getVisibleCards().length-cpv); 
+    if(currentIndex<maxIndex){ 
+      currentIndex++; 
+      updateCarousel(); 
+    }
+  });
 
   tabBtns.forEach(btn=>{
     btn.addEventListener('click',()=>{
       const category=btn.dataset.category;
+
+      // Tab styling
       tabBtns.forEach(b=>b.classList.remove('active','text-[var(--cyan-teal)]','border-[var(--cyan-teal)]','bg-[rgba(17,100,102,0.06)]'));
       tabBtns.forEach(b=>b.classList.add('text-gray-800','border-gray-300','bg-white'));
       btn.classList.add('active','text-[var(--cyan-teal)]','border-[var(--cyan-teal)]','bg-[rgba(17,100,102,0.06)]');
       btn.classList.remove('text-gray-800','border-gray-300','bg-white');
 
+      // Filter cards
       cards.forEach(c=>c.style.display=(category==='all'||c.dataset.category===category)?'block':'none');
+
+      // ---- NEW CENTERING LOGIC ----
+      const visible = getVisibleCards();
+
+      if (window.innerWidth >= 1024 && visible.length < 3) {
+        container.classList.add("centered");
+      } else {
+        container.classList.remove("centered");
+      }
+      // ------------------------------
+
       updateArrowVisibility(category);
       currentIndex=0;
       updateCarousel();
@@ -1097,7 +1199,8 @@
   cards.forEach(c=>c.style.display='block');
   updateArrowVisibility('all');
   updateCarousel();
-  })();
+})();
+
 </script>
   </body>
 </html>
