@@ -21,183 +21,338 @@
       --light-mint: #D1E8E2;
     }
 
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: "Inter", system-ui, -apple-system, sans-serif;
-      background: var(--light-mint);
+      background: linear-gradient(135deg, var(--light-mint) 0%, #f0fffe 100%);
       color: var(--dark-teal);
+      min-height: 100vh;
     }
 
     .gradient-text {
       background: linear-gradient(90deg, var(--cyan-teal), var(--bronze));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Enhanced header with parallax-like effect */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--cyan-teal) 0%, var(--dark-teal) 100%);
+      animation: gradientShift 8s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background: linear-gradient(135deg, var(--cyan-teal) 0%, var(--dark-teal) 100%); }
+      50% { background: linear-gradient(135deg, var(--dark-teal) 0%, var(--cyan-teal) 100%); }
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,.1)"/><circle cx="50" cy="50" r="1.5" fill="rgba(255,255,255,.05)"/></svg>');
+      background-size: 200px 200px;
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
 
     .contact-card {
-      transition: all 0.35s ease;
-      border: 1px solid rgba(44, 53, 49, 0.1);
-      backdrop-filter: blur(6px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 32px rgba(44, 53, 49, 0.08);
     }
 
     .contact-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(44, 53, 49, 0.1);
-      border-color: var(--cyan-teal);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(17, 100, 102, 0.15);
+      border-color: var(--bronze);
+      backdrop-filter: blur(15px);
     }
 
     .contact-card i {
-      transition: color 0.3s ease, transform 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .contact-card:hover i {
       color: var(--soft-peach);
-      transform: scale(1.15);
+      transform: scale(1.2) rotate(5deg);
     }
 
     .btn-gradient {
-      background: linear-gradient(90deg, var(--cyan-teal), var(--bronze));
+      background: linear-gradient(135deg, var(--cyan-teal) 0%, var(--bronze) 100%);
       color: white !important;
       font-weight: 600;
-      box-shadow: 0 8px 24px rgba(44, 53, 49, 0.15);
-      transition: all 0.35s ease;
+      box-shadow: 0 8px 24px rgba(17, 100, 102, 0.2);
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,.2), rgba(255,255,255,.1));
+      transition: left 0.5s ease;
+    }
+
+    .btn-gradient:hover::before {
+      left: 100%;
     }
 
     .btn-gradient:hover {
-      opacity: 0.95;
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(44, 53, 49, 0.2);
+      opacity: 0.98;
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(17, 100, 102, 0.3);
+    }
+
+    .btn-gradient:active {
+      transform: translateY(-1px) scale(0.98);
     }
 
     input, textarea {
-      border: 1px solid #d1d5db;
-      border-radius: 0.5rem;
-      transition: all 0.25s ease;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(44, 53, 49, 0.4);
     }
 
     input:focus, textarea:focus {
       border-color: var(--cyan-teal);
-      box-shadow: 0 0 0 3px rgba(17, 100, 102, 0.12);
+      box-shadow: 0 0 0 4px rgba(17, 100, 102, 0.15);
       outline: none;
+      background: white;
+      transform: scale(1.01);
+    }
+
+    input:invalid:not(:placeholder-shown) {
+      border-color: #ef4444;
     }
 
     #formStatus {
       display: none;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     #formStatus.visible {
       display: block;
-      background: var(--light-mint);
+      background: linear-gradient(135deg, rgba(255, 203, 154, 0.15), rgba(209, 232, 226, 0.15));
       border-left: 4px solid var(--soft-peach);
-      padding: 0.75rem 1rem;
-      border-radius: 0.5rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
       font-weight: 500;
+      backdrop-filter: blur(10px);
     }
 
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .sr-only { 
+      position: absolute; 
+      width: 1px; 
+      height: 1px; 
+      padding: 0; 
+      margin: -1px; 
+      overflow: hidden; 
+      clip: rect(0,0,0,0); 
+      white-space: nowrap; 
+      border: 0; 
+    }
+
+    .icon-wrapper {
+      animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    .icon-wrapper:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .icon-wrapper:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .email-btn {
+      border: 2px solid var(--cyan-teal);
+      background: white;
+      color: var(--cyan-teal);
+      font-weight: 600;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .email-btn:hover {
+      background: var(--cyan-teal);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(17, 100, 102, 0.25);
+    }
+
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--soft-peach), transparent);
+      margin: 2rem 0;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--dark-teal);
+    }
   </style>
 </head>
 
 <body class="flex flex-col min-h-screen">
 
   <!-- Hero Section -->
-  <header class="relative bg-cover bg-center bg-no-repeat py-20 px-6"
-           style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80');">
-    <div class="absolute inset-0 bg-gradient-to-b from-[rgba(44,53,49,0.75)] to-[rgba(17,100,102,0.65)]" aria-hidden="true"></div>
-    <div class="relative text-center max-w-4xl mx-auto text-white space-y-6">
-      <h1 class="text-4xl md:text-6xl font-extrabold gradient-text">Get in Touch</h1>
-      <p class="text-lg md:text-xl">Have a project in mind? Send us a message and we'll respond as soon as possible.</p>
+  <header class="hero-section relative py-24 px-6 md:py-32">
+    <div class="hero-content">
+      <div class="relative text-center max-w-4xl mx-auto text-white space-y-6">
+        <div class="inline-block mb-4">
+          <span class="text-sm font-semibold tracking-widest uppercase opacity-80 backdrop-blur-sm bg-white/10 px-4 py-2 rounded-full">Contact Us</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
+          <span class="text-white">Let's Create</span>
+          <span class="block gradient-text">Something Amazing</span>
+        </h1>
+        <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">Have a project in mind? Get in touch with our team and let's bring your ideas to life.</p>
+      </div>
     </div>
   </header>
 
   <!-- Contact Section -->
-  <main class="flex-grow py-16 md:py-24">
-    <div class="container mx-auto px-4 lg:px-8">
+  <main class="flex-grow py-16 md:py-28 px-4">
+    <div class="container mx-auto">
 
-      <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-16 max-w-6xl mx-auto">
 
         <!-- Contact Form -->
-        <section aria-labelledby="contactHeading" class="order-1 md:order-1 bg-white rounded-2xl p-8 shadow-sm contact-card">
-          <h2 id="contactHeading" class="text-2xl font-bold text-[var(--dark-teal)] mb-4">Send us a Message</h2>
+        <section aria-labelledby="contactHeading" class="order-1 md:order-1">
+          <div class="bg-white rounded-2xl p-8 md:p-10 shadow-lg contact-card">
+            <h2 id="contactHeading" class="text-3xl font-bold text-[var(--dark-teal)] mb-2">Send us a Message</h2>
+            <p class="text-gray-600 mb-8">We'll get back to you within 24 hours.</p>
 
-          <form id="contactForm" class="space-y-6" novalidate>
-            <p id="formStatus" role="status" aria-live="polite" class="text-sm"></p>
+            <form id="contactForm" class="space-y-6" novalidate>
+              <p id="formStatus" role="status" aria-live="polite" class="text-sm"></p>
 
-            <div>
-              <label for="name" class="block text-sm font-semibold mb-2">Name <span class="text-red-500" aria-hidden="true">*</span></label>
-              <input id="name" type="text" name="name" placeholder="Your name" class="w-full px-4 py-2" required aria-required="true" />
-            </div>
+              <div>
+                <label for="name">Name <span class="text-red-500" aria-hidden="true">*</span></label>
+                <input id="name" type="text" name="name" placeholder="Your name" class="w-full px-4 py-3" required aria-required="true" />
+              </div>
 
-            <div>
-              <label for="email" class="block text-sm font-semibold mb-2">Email <span class="text-red-500" aria-hidden="true">*</span></label>
-              <input id="email" type="email" name="email" placeholder="your.email@example.com" class="w-full px-4 py-2" required aria-required="true" />
-            </div>
+              <div>
+                <label for="email">Email <span class="text-red-500" aria-hidden="true">*</span></label>
+                <input id="email" type="email" name="email" placeholder="your.email@example.com" class="w-full px-4 py-3" required aria-required="true" />
+              </div>
 
-            <div>
-              <label for="subject" class="block text-sm font-semibold mb-2">Subject</label>
-              <input id="subject" type="text" name="subject" placeholder="How can we help?" class="w-full px-4 py-2" />
-            </div>
+              <div>
+                <label for="subject">Subject</label>
+                <input id="subject" type="text" name="subject" placeholder="How can we help?" class="w-full px-4 py-3" />
+              </div>
 
-            <div>
-              <label for="message" class="block text-sm font-semibold mb-2">Message <span class="text-red-500" aria-hidden="true">*</span></label>
-              <textarea id="message" name="message" placeholder="Tell us about your project..." class="w-full px-4 py-2 min-h-[150px] resize-none" required aria-required="true"></textarea>
-            </div>
+              <div>
+                <label for="message">Message <span class="text-red-500" aria-hidden="true">*</span></label>
+                <textarea id="message" name="message" placeholder="Tell us about your project..." class="w-full px-4 py-3 min-h-[150px] resize-none" required aria-required="true"></textarea>
+              </div>
 
-            <!-- Honeypot -->
-            <div class="sr-only" aria-hidden="true">
-              <label for="website">Website</label>
-              <input id="website" name="website" type="text" autocomplete="off" tabindex="-1" />
-            </div>
+              <!-- Honeypot -->
+              <div class="sr-only" aria-hidden="true">
+                <label for="website">Website</label>
+                <input id="website" name="website" type="text" autocomplete="off" tabindex="-1" />
+              </div>
 
-            <div class="flex gap-3 items-center">
-              <button type="submit" id="sendBtn" aria-label="Send message" class="flex-1 btn-gradient py-3 rounded-lg shadow-md inline-flex items-center justify-center">
-                <span id="btnText">Send Message</span>
-                <svg id="btnSpinner" class="hidden animate-spin ml-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                </svg>
-              </button>
+              <div class="flex gap-3 items-center pt-4">
+                <button type="submit" id="sendBtn" aria-label="Send message" class="flex-1 btn-gradient py-3 rounded-lg inline-flex items-center justify-center relative">
+                  <span id="btnText">Send Message</span>
+                  <svg id="btnSpinner" class="hidden animate-spin ml-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                  </svg>
+                </button>
 
-              <a href="mailto:hello@sitefully.com" class="inline-flex items-center justify-center px-4 py-3 rounded-lg border border-[var(--cyan-teal)] text-[var(--cyan-teal)] hover:bg-[var(--cyan-teal)] hover:text-white transition">Email</a>
-            </div>
-          </form>
+                <a href="mailto:hello@sitefully.com" class="inline-flex items-center justify-center px-4 py-3 rounded-lg email-btn" aria-label="Send email directly">Email</a>
+              </div>
+            </form>
 
-          <noscript class="mt-3 text-sm text-center text-red-600">JavaScript is required for best experience. You can still email hello@sitefully.com.</noscript>
+            <noscript class="mt-6 text-sm text-center text-red-600 block">JavaScript is required for best experience. You can still email hello@sitefully.com.</noscript>
+          </div>
         </section>
 
         <!-- Contact Info & Map -->
         <aside class="order-2 md:order-2 space-y-8" aria-labelledby="infoHeading">
           <h2 id="infoHeading" class="sr-only">Contact information and location</h2>
 
-          <div class="bg-white rounded-2xl p-8 space-y-6 shadow-sm contact-card" aria-label="Contact information">
-            <h3 class="text-xl font-semibold text-[var(--dark-teal)] mb-2">Contact Information</h3>
+          <div class="bg-white rounded-2xl p-8 md:p-10 space-y-6 shadow-lg contact-card" aria-label="Contact information">
+            <h3 class="text-2xl font-bold text-[var(--dark-teal)] mb-6">Get in Touch</h3>
             <div class="space-y-6">
-              <div class="flex items-start space-x-4">
-                <div class="h-12 w-12 rounded-xl bg-[var(--light-mint)] flex items-center justify-center flex-shrink-0" aria-hidden="true">
-                  <i class="fa-solid fa-envelope text-[var(--cyan-teal)] text-xl"></i>
+              <div class="icon-wrapper flex items-start space-x-4 group">
+                <div class="h-14 w-14 rounded-xl bg-gradient-to-br from-[var(--light-mint)] to-[var(--cyan-teal)] flex items-center justify-center flex-shrink-0 shadow-md group-hover:shadow-lg transition-all" aria-hidden="true">
+                  <i class="fa-solid fa-envelope text-white text-lg"></i>
                 </div>
-                <div>
-                  <div class="text-sm font-semibold uppercase tracking-wider mb-1 text-[var(--cyan-teal)]">Email</div>
-                  <a href="mailto:hello@sitefully.com" class="text-[var(--dark-teal)] hover:text-[var(--soft-peach)] transition-colors">hello@sitefully.com</a>
-                </div>
-              </div>
-
-              <div class="flex items-start space-x-4">
-                <div class="h-12 w-12 rounded-xl bg-[var(--soft-peach)] flex items-center justify-center flex-shrink-0" aria-hidden="true">
-                  <i class="fa-solid fa-phone text-[var(--cyan-teal)] text-xl"></i>
-                </div>
-                <div>
-                  <div class="text-sm font-semibold uppercase tracking-wider mb-1 text-[var(--cyan-teal)]">Phone</div>
-                  <a href="tel:+1234567890" class="text-[var(--dark-teal)] hover:text-[var(--soft-peach)] transition-colors">+1 (234) 567-890</a>
+                <div class="flex-1">
+                  <div class="text-xs font-bold uppercase tracking-wider mb-2 text-[var(--cyan-teal)]">Email</div>
+                  <a href="mailto:hello@sitefully.com" class="text-[var(--dark-teal)] hover:text-[var(--soft-peach)] transition-colors font-medium">hello@sitefully.com</a>
                 </div>
               </div>
 
-              <div class="flex items-start space-x-4">
-                <div class="h-12 w-12 rounded-xl bg-[var(--light-mint)] flex items-center justify-center flex-shrink-0" aria-hidden="true">
-                  <i class="fa-solid fa-location-dot text-[var(--cyan-teal)] text-xl"></i>
+              <div class="icon-wrapper flex items-start space-x-4 group">
+                <div class="h-14 w-14 rounded-xl bg-gradient-to-br from-[var(--soft-peach)] to-[var(--bronze)] flex items-center justify-center flex-shrink-0 shadow-md group-hover:shadow-lg transition-all" aria-hidden="true">
+                  <i class="fa-solid fa-phone text-white text-lg"></i>
                 </div>
-                <div>
-                  <div class="text-sm font-semibold uppercase tracking-wider mb-1 text-[var(--cyan-teal)]">Address</div>
-                  <address class="not-italic text-[var(--dark-teal)] leading-relaxed">
+                <div class="flex-1">
+                  <div class="text-xs font-bold uppercase tracking-wider mb-2 text-[var(--cyan-teal)]">Phone</div>
+                  <a href="tel:+1234567890" class="text-[var(--dark-teal)] hover:text-[var(--soft-peach)] transition-colors font-medium">+1 (234) 567-890</a>
+                </div>
+              </div>
+
+              <div class="icon-wrapper flex items-start space-x-4 group">
+                <div class="h-14 w-14 rounded-xl bg-gradient-to-br from-[var(--light-mint)] to-[var(--soft-peach)] flex items-center justify-center flex-shrink-0 shadow-md group-hover:shadow-lg transition-all" aria-hidden="true">
+                  <i class="fa-solid fa-location-dot text-white text-lg"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="text-xs font-bold uppercase tracking-wider mb-2 text-[var(--cyan-teal)]">Address</div>
+                  <address class="not-italic text-[var(--dark-teal)] leading-relaxed font-medium">
                     123 Digital Avenue<br />
                     Tech City, TC 12345<br />
                     United States
@@ -207,11 +362,11 @@
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl overflow-hidden shadow-sm contact-card" aria-hidden="false" title="Sitefully location map">
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg contact-card" aria-hidden="false" title="Sitefully location map">
             <iframe
               title="Sitefully location map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.293967985971!2d-122.41941558468154!3d37.77492977975911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f0b3e9a8b%3A0x7bdfd3b82e1b6400!2sTech%20City!5e0!3m2!1sen!2sus!4v1636065136721!5m2!1sen!2sus"
-              width="100%" height="300" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              width="100%" height="320" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
 
@@ -219,13 +374,6 @@
       </div>
     </div>
   </main>
-
-  <!-- Footer -->
-  <footer class="bg-[var(--dark-teal)] text-[var(--soft-peach)] py-6">
-    <div class="container mx-auto px-5 text-center text-sm">
-      <p>&copy; <span id="year" aria-hidden="false"></span> Sitefully Web Solutions — All rights reserved.</p>
-    </div>
-  </footer>
 
   <!-- JSON-LD Organization -->
   <script type="application/ld+json">
@@ -303,8 +451,6 @@
         btnSpinner.classList.remove('hidden');
         btnText.textContent = 'Sending...';
 
-        // Example: attempt to POST to /api/contact (replace URL with your server endpoint).
-        // If you don't have a server, this block simulates a send and keeps UX consistent.
         try {
           // Uncomment and update the fetch block below to integrate with a real endpoint:
           /*

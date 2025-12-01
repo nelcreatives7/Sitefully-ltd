@@ -1,604 +1,600 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sitefully | Services</title>
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-
-    <style>
-      /* Brand palette */
-      :root {
-        --dark-teal: #2C3531;
-        --cyan-teal: #116466;
-        --bronze: #D9B08C;
-        --soft-peach: #FFCB9A;
-        --light-mint: #D1E8E2;
-        /* Derived tokens */
-        --bg-main: #0f1412;
-        --text-dark: #121212;
-        --text-muted: #4b5563;
-        --card-border: rgba(209, 232, 226, 0.6);
-      }
-
-      /* Duration badge: absolute on desktop, flow on small screens to avoid overlap */
-      .duration-badge {
-        position: absolute;
-        top: 1rem;
-        right: 2rem;
-        display: inline-block;
-        padding: .25rem .75rem;
-        border-radius: .75rem;
-        background: linear-gradient(120deg, var(--cyan-teal), var(--bronze));
-        color: #ffffff;
-        font-size: .75rem;
-        font-weight: 600;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      }
-
-      @media (max-width: 768px) {
-        .duration-badge {
-          position: static; /* Change to static for mobile */
-          margin-top: 1rem; /* Add margin for spacing */
-          margin-left: 0; /* Reset left margin */
-          display: inline-block; /* Ensure it displays inline */
-        }
-        .checklist-item > div {
-          padding-right: 0; /* Remove right padding for mobile */
-        }
-      }
-
-      /* Smooth UI enhancements */
-      body {
-        background: radial-gradient(circle at top left, var(--cyan-teal) 0%, var(--dark-teal) 45%, #0b0f0e 100%);
-        color: var(--text-dark);
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
-      }
-
-      .glass-card {
-        background: linear-gradient(
-          135deg,
-          rgba(209, 232, 226, 0.96),
-          rgba(255, 203, 154, 0.92)
-        );
-        backdrop-filter: blur(14px);
-        border: 1px solid var(--card-border);
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      }
-
-      .glass-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
-        border-color: rgba(217, 176, 140, 0.9);
-      }
-
-      .gradient-text {
-        background: linear-gradient(90deg, var(--cyan-teal), var(--soft-peach));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .hero-cursor {
-        display: inline-block;
-        width: 3px;
-        height: 1em;
-        background: var(--soft-peach);
-        animation: blink 1s steps(2, start) infinite;
-        vertical-align: middle;
-      }
-
-      @keyframes blink {
-        50% {
-          opacity: 0;
-        }
-      }
-
-      .timeline-dot {
-        position: absolute;
-        left: -1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 10px;
-        height: 10px;
-        background: linear-gradient(90deg, var(--cyan-teal), var(--soft-peach));
-        border-radius: 50%;
-      }
-
-      .phase-badge {
-        background: linear-gradient(120deg, var(--cyan-teal), var(--bronze));
-        color: #ffffff;
-        border-radius: 9999px;
-        padding: 0.35rem 0.85rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.03em;
-      }
-    </style>
-  </head>
-  <body class="text-[var(--dark-teal)]">
-    <!-- HERO SECTION WITH VIDEO BACKGROUND -->
-    <section class="relative w-full h-[40vh] flex flex-col justify-center items-center overflow-hidden text-white opacity-60 md:opacity-50">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sitefully | Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
-      <!-- Overlay for readability -->
-      <div class="absolute inset-0 bg-[rgba(17,100,102,0.7)] mix-blend-multiply"></div>
+    * {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    
+    :root {
+      --dark-teal: #2C3531;
+      --cyan-teal: #116466;
+      --bronze: #D9B08C;
+      --soft-peach: #FFCB9A;
+      --light-mint: #D1E8E2;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #D1E8E2 0%, #E8F4F0 50%, #D1E8E2 100%);
+      min-height: 100vh;
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(44, 53, 49, 0.1);
+    }
+    
+    .glass-dark {
+      background: rgba(44, 53, 49, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .phase-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .phase-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--cyan-teal), var(--bronze));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    
+    .phase-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .phase-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(17, 100, 102, 0.2);
+    }
+    
+    .phase-number {
+      background: linear-gradient(135deg, var(--cyan-teal) 0%, var(--bronze) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .detail-item {
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: slideIn 0.5s ease forwards;
+    }
+    
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .detail-item:nth-child(1) { animation-delay: 0.1s; }
+    .detail-item:nth-child(2) { animation-delay: 0.2s; }
+    .detail-item:nth-child(3) { animation-delay: 0.3s; }
+    .detail-item:nth-child(4) { animation-delay: 0.4s; }
+    
+    .timeline-indicator {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--cyan-teal), var(--bronze));
+      border-radius: 2px;
+    }
+    
+    .pulse-dot {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, var(--cyan-teal) 0%, var(--bronze) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, var(--cyan-teal) 0%, var(--bronze) 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(17, 100, 102, 0.4);
+    }
 
-      <!-- Hero Content -->
-      <div class="relative z-10 text-center px-6 space-y-6 max-w-4xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow-lg">
-          <span id="heroHeading" class="gradient-text">Smart Web Solutions for Every Brand</span>
-          <span class="hero-cursor"></span>
+    /* Phase-specific gradient backgrounds */
+    .phase-1-gradient { background: linear-gradient(135deg, rgba(17, 100, 102, 0.1), rgba(217, 176, 140, 0.05)); }
+    .phase-2-gradient { background: linear-gradient(135deg, rgba(44, 53, 49, 0.08), rgba(17, 100, 102, 0.05)); }
+    .phase-3-gradient { background: linear-gradient(135deg, rgba(17, 100, 102, 0.1), rgba(209, 232, 226, 0.1)); }
+    .phase-4-gradient { background: linear-gradient(135deg, rgba(217, 176, 140, 0.1), rgba(255, 203, 154, 0.05)); }
+    .phase-5-gradient { background: linear-gradient(135deg, rgba(44, 53, 49, 0.08), rgba(209, 232, 226, 0.08)); }
+    .phase-6-gradient { background: linear-gradient(135deg, rgba(255, 203, 154, 0.1), rgba(217, 176, 140, 0.08)); }
+  </style>
+</head>
+<body>
+  
+  <!-- Hero Section -->
+  <section class="relative pt-20 pb-32 px-4 overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-xl opacity-15 floating" style="background: linear-gradient(135deg, var(--cyan-teal), var(--bronze));"></div>
+      <div class="absolute top-40 right-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-xl opacity-15 floating" style="animation-delay: 2s; background: linear-gradient(135deg, var(--light-mint), var(--cyan-teal));"></div>
+      <div class="absolute -bottom-8 left-1/2 w-72 h-72 rounded-full mix-blend-multiply filter blur-xl opacity-15 floating" style="animation-delay: 4s; background: linear-gradient(135deg, var(--bronze), var(--soft-peach));"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="text-center space-y-8">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 glass-dark text-white px-6 py-3 rounded-full text-sm font-medium">
+          <span class="pulse-dot">✨</span>
+          <span>Transparent Process, Exceptional Results</span>
+        </div>
+        
+        <!-- Main Heading -->
+        <h1 class="text-5xl md:text-7xl font-black leading-tight" style="color: var(--dark-teal);">
+          Your Website,<br/>
+          <span class="gradient-text">Step by Step</span>
         </h1>
         
-      </div>
-
-      <!-- Dancing Arrow Section -->
-      <div class="relative z-10 mt-12 flex flex-col items-center" id="checklist">
-        <p class="text-sm md:text-base text-[var(--light-mint)]/90 mb-3 tracking-wide">
-          Scroll down to explore our <span class="text-[var(--soft-peach)] font-semibold">project checklist</span>
+        <!-- Subheading -->
+        <p class="text-xl md:text-2xl font-light max-w-2xl mx-auto" style="color: var(--dark-teal);">
+          From concept to launch, we guide you through every phase with clarity and confidence
         </p>
-        <a href="#servicesContainer" class="animate-bounce">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-[var(--soft-peach)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- SERVICES SECTION -->
-    <section class="flex-grow py-20 md:py-32">
-      <div class="container mx-auto px-4 lg:px-8">
         
-        <!-- Service Cards -->
-        <div
-          id="servicesContainer"
-          class="max-w-5xl mx-auto space-y-6 text-[var(--dark-teal)]"
-        >
-          <!-- Intro card -->
-          <div class="glass-card rounded-2xl p-6 shadow-lg">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <h2 class="text-2xl font-bold gradient-text mb-2 flex items-center">
-                  <i class="fas fa-clipboard-check mr-2 text-[var(--cyan-teal)]/90"></i> 
-                  Web Development Process
-                </h2>
-                <p class="text-sm text-[var(--text-muted)]">
-                  Click each phase to see detailed steps and deliverables.
-                </p>
+        <!-- Stats -->
+        <div class="flex flex-wrap justify-center gap-8 pt-8">
+          <div class="glass text-center px-8 py-4 rounded-2xl">
+            <div class="text-3xl font-bold gradient-text">8+</div>
+            <div class="text-sm font-medium" style="color: var(--dark-teal);">Weeks Timeline</div>
+          </div>
+          <div class="glass text-center px-8 py-4 rounded-2xl">
+            <div class="text-3xl font-bold gradient-text">6</div>
+            <div class="text-sm font-medium" style="color: var(--dark-teal);">Key Phases</div>
+          </div>
+          <div class="glass text-center px-8 py-4 rounded-2xl">
+            <div class="text-3xl font-bold gradient-text">100%</div>
+            <div class="text-sm font-medium" style="color: var(--dark-teal);">Transparency</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services Grid -->
+  <section class="pb-32 px-4">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--dark-teal);">
+          Our Development Process
+        </h2>
+        <p class="text-lg" style="color: var(--dark-teal); opacity: 0.7;">Click any phase to explore the details</p>
+      </div>
+      
+      <!-- Phase Cards Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Phase 1: Discovery -->
+        <div class="phase-card glass rounded-3xl p-8 cursor-pointer group phase-1-gradient" onclick="toggleDetails(this)">
+          <div class="mb-6">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-600 to-teal-500 flex items-center justify-center text-white text-2xl font-bold mb-4" style="background: linear-gradient(135deg, var(--cyan-teal), var(--bronze));">
+              1
+            </div>
+            <h3 class="text-2xl font-bold mb-2" style="color: var(--dark-teal);">Discovery & Planning</h3>
+            <p style="color: var(--dark-teal); opacity: 0.7;">Understanding your vision and goals</p>
+          </div>
+          
+          <div class="phase-details hidden">
+            <div class="relative pl-6 space-y-4 border-l-2 mt-6" style="border-color: var(--cyan-teal);">
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--cyan-teal);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Initial Consultation</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Virtual or in-person meeting to align on goals</p>
+                  </div>
+                </div>
               </div>
-              <span class="phase-badge flex items-center gap-1">
-                <i class="fas fa-calendar-alt text-xs"></i> 8+ weeks
-              </span>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--cyan-teal);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Requirements Gathering</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Define pages, features, and success metrics</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--cyan-teal);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Project Proposal</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Detailed proposal with timeline and quotation</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 inline-block px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(17, 100, 102, 0.1); color: var(--cyan-teal);">
+              <i class="far fa-clock mr-2"></i>1 Week
             </div>
           </div>
-
-          <!-- 1. Discovery -->
-          <details
-            class="glass-card rounded-2xl overflow-hidden checklist-item"
-            open
-          >
-            <summary
-              class="px-6 py-6 hover:bg-[var(--light-mint)]/40 cursor-pointer flex justify-between items-center transition-colors"
-            >
-              <div class="flex items-center space-x-4">
-                <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=60"
-                  class="w-28 h-16 object-cover rounded-lg shadow-md"
-                  alt="Discovery"
-                />
-                <div>
-                  <h3 class="font-bold text-lg gradient-text">
-                    1. Project Discovery & Planning
-                  </h3>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Understand client goals, audience, and design preferences.
-                  </p>
-                </div>
-              </div>
-              <i class="fas fa-plus expand-icon text-[var(--cyan-teal)]"></i>
-            </summary>
-            <div class="px-8 pb-6 pl-14 relative">
-              <div class="space-y-4">
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Initial consultation</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Virtual or in-person meeting to align goals.
-                  </p>
-                </div>
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">
-                    Requirements & site map
-                  </h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Define pages, features, integrations, and success metrics.
-                  </p>
-                </div>
-                 <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">
-                    Proposal & milestones
-                  </h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Deliverable: proposal & quotation.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </details>
-
-          <!-- 2. Design & Mockup Phase -->
-          <details class="glass-card rounded-2xl overflow-hidden checklist-item">
-            <summary
-              class="px-6 py-6 hover:bg-[var(--light-mint)]/40 cursor-pointer flex justify-between items-center transition-colors"
-            >
-              <div class="flex items-center space-x-4">
-                <img
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
-                  class="w-28 h-16 object-cover rounded-lg shadow-md"
-                  alt="Design and Mockup"
-                />
-                <div>
-                  <h3 class="font-bold text-lg gradient-text">
-                    2. Design & Mockup Phase
-                  </h3>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Visualize your brand identity and UI concepts.
-                  </p>
-                </div>
-              </div>
-              <i class="fas fa-plus expand-icon text-[var(--cyan-teal)]"></i>
-            </summary>
-
-            <div class="px-8 pb-6 pl-14 relative">
-              <div class="space-y-4">
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Wireframes</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Create layout drafts for all main pages and sections.
-                  </p>
-                </div>
-
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">High-fidelity Mockups</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Build detailed visuals in Figma or Adobe XD for client feedback.
-                  </p>
-                </div>
-
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Final UI Approval</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Finalize and approve design for the development handoff.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Duration Badge -->
-              <span class="duration-badge">2–3 weeks</span>
-            </div>
-          </details>
-
-          <!-- 3. Development -->
-          <details class="glass-card rounded-2xl overflow-hidden checklist-item">
-            <summary
-              class="px-6 py-6 hover:bg-[var(--light-mint)]/40 cursor-pointer flex justify-between items-center transition-colors"
-            >
-              <div class="flex items-center space-x-4">
-                <img
-                  src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&q=60"
-                  class="w-28 h-16 object-cover rounded-lg shadow-md"
-                  alt="Development"
-                />
-                <div>
-                  <h3 class="font-bold text-lg gradient-text">
-                    3. Development (Django + Tailwind/Bootstrap + JS)
-                  </h3>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Convert design into a robust, scalable site.
-                  </p>
-                </div>
-              </div>
-              <i class="fas fa-plus expand-icon text-[var(--cyan-teal)]"></i>
-            </summary>
-
-            <div class="px-8 pb-6 pl-14 relative">
-              <div class="space-y-4">
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Backend setup</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Models, views, authentication, and APIs.
-                  </p>
-                </div>
-
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Frontend build</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Responsive UI components and interactions.
-                  </p>
-                </div>
-
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Feature integration</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Forms, blog, gallery, email & WhatsApp links.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Duration Badge -->
-              <span class="duration-badge">4–6 weeks</span>
-            </div>
-          </details>
-
-          <!-- 4. Testing -->
-          <details class="glass-card rounded-2xl overflow-hidden checklist-item">
-            <summary
-              class="px-6 py-6 hover:bg-[var(--light-mint)]/40 cursor-pointer flex justify-between items-center transition-colors"
-            >
-              <div class="flex items-center space-x-4">
-                <img
-                  src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=800&q=60"
-                  class="w-28 h-16 object-cover rounded-lg shadow-md"
-                  alt="Testing"
-                />
-                <div>
-                  <h3 class="font-bold text-lg gradient-text">
-                    4. Testing & Review
-                  </h3>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Ensure quality, security, and performance.
-                  </p>
-                </div>
-              </div>
-              <i class="fas fa-plus expand-icon text-[var(--cyan-teal)]"></i>
-            </summary>
-
-            <div class="px-8 pb-6 pl-14 relative">
-              <div class="space-y-4">
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Cross-browser checks</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Chrome, Safari, Firefox, and mobile tests.
-                  </p>
-                </div>
-
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Performance tuning</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Speed, image optimization, and caching.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Duration Badge -->
-              <span class="duration-badge">1–2 weeks</span>
-            </div>
-          </details>
-
-          <!-- 5. Deployment -->
-          <details class="glass-card rounded-2xl overflow-hidden checklist-item">
-            <summary
-              class="px-6 py-6 hover:bg-[var(--light-mint)]/40 cursor-pointer flex justify-between items-center transition-colors"
-            >
-              <div class="flex items-center space-x-4">
-                <img
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=60"
-                  class="w-28 h-16 object-cover rounded-lg shadow-md"
-                  alt="Deployment"
-                />
-                <div>
-                  <h3 class="font-bold text-lg gradient-text">
-                    5. Deployment & Hosting
-                  </h3>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Make the site live & secure.
-                  </p>
-                </div>
-              </div>
-              <i class="fas fa-plus expand-icon text-[var(--cyan-teal)]"></i>
-            </summary>
-
-            <div class="px-8 pb-6 pl-14 relative">
-              <div class="space-y-4">
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Domain & SSL</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Domain connect, HTTPS & DNS setup.
-                  </p>
-                </div>
-
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Deploy to host</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Render, PythonAnywhere, or VPS deployment.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Duration Badge -->
-              <span class="duration-badge">Included</span>
-            </div>
-          </details>
-
-          <!-- 6. Maintenance -->
-          <details class="glass-card rounded-2xl overflow-hidden checklist-item">
-            <summary
-              class="px-6 py-6 hover:bg-[var(--light-mint)]/40 cursor-pointer flex justify-between items-center transition-colors"
-            >
-              <div class="flex items-center space-x-4">
-                <img
-                  src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=800&q=80"
-                  class="w-28 h-16 object-cover rounded-lg shadow-md"
-                  alt="Maintenance and Support"
-                />
-                <div>
-                  <h3 class="font-bold text-lg gradient-text">
-                    6. Maintenance & Support
-                  </h3>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Keep the site secure and fresh.
-                  </p>
-                </div>
-              </div>
-              <i class="fas fa-plus expand-icon text-[var(--cyan-teal)]"></i>
-            </summary>
-
-            <div class="px-8 pb-6 pl-14 relative">
-              <div class="space-y-4">
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Regular updates</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Security patches and content tweaks.
-                  </p>
-                </div>
-
-                <div class="relative pl-6">
-                  <div class="timeline-dot"></div>
-                  <h4 class="font-medium text-[var(--cyan-teal)]">Backups & support</h4>
-                  <p class="text-sm text-[var(--text-muted)]">
-                    Automatic backups and helpdesk access.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Duration Badge -->
-              <span class="duration-badge">Ongoing</span>
-            </div>
-          </details>
+          
+          <div class="mt-6 flex items-center font-semibold group-hover:gap-2 transition-all" style="color: var(--cyan-teal);">
+            <span class="view-text">View Details</span>
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
           </div>
+        </div>
+        
+        <!-- Phase 2: Design -->
+        <div class="phase-card glass rounded-3xl p-8 cursor-pointer group phase-2-gradient" onclick="toggleDetails(this)">
+          <div class="mb-6">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-4" style="background: linear-gradient(135deg, var(--bronze), var(--soft-peach));">
+              2
+            </div>
+            <h3 class="text-2xl font-bold mb-2" style="color: var(--dark-teal);">Design & Mockup</h3>
+            <p style="color: var(--dark-teal); opacity: 0.7;">Visualizing your brand identity</p>
+          </div>
+          
+          <div class="phase-details hidden">
+            <div class="relative pl-6 space-y-4 border-l-2 mt-6" style="border-color: var(--bronze);">
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--bronze);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Wireframes</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Create layout drafts for all main pages</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--bronze);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">High-Fidelity Mockups</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Detailed visuals in Figma or Adobe XD</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--bronze);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">UI Approval</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Final design sign-off before development</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 inline-block px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(217, 176, 140, 0.15); color: var(--bronze);">
+              <i class="far fa-clock mr-2"></i>2-3 Weeks
+            </div>
+          </div>
+          
+          <div class="mt-6 flex items-center font-semibold group-hover:gap-2 transition-all" style="color: var(--bronze);">
+            <span class="view-text">View Details</span>
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+        
+        <!-- Phase 3: Development -->
+        <div class="phase-card glass rounded-3xl p-8 cursor-pointer group phase-3-gradient" onclick="toggleDetails(this)">
+          <div class="mb-6">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-4" style="background: linear-gradient(135deg, var(--light-mint), var(--cyan-teal));">
+              3
+            </div>
+            <h3 class="text-2xl font-bold mb-2" style="color: var(--dark-teal);">Development</h3>
+            <p style="color: var(--dark-teal); opacity: 0.7;">Building your digital presence</p>
+          </div>
+          
+          <div class="phase-details hidden">
+            <div class="relative pl-6 space-y-4 border-l-2 mt-6" style="border-color: var(--light-mint);">
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--cyan-teal);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Backend Setup</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Database, APIs, and authentication</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--cyan-teal);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Frontend Build</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Responsive UI and interactions</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--cyan-teal);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Feature Integration</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Forms, galleries, contact systems</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 inline-block px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(209, 232, 226, 0.3); color: var(--cyan-teal);">
+              <i class="far fa-clock mr-2"></i>4-6 Weeks
+            </div>
+          </div>
+          
+          <div class="mt-6 flex items-center font-semibold group-hover:gap-2 transition-all" style="color: var(--cyan-teal);">
+            <span class="view-text">View Details</span>
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+        
+        <!-- Phase 4: Testing -->
+        <div class="phase-card glass rounded-3xl p-8 cursor-pointer group phase-4-gradient" onclick="toggleDetails(this)">
+          <div class="mb-6">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-4" style="background: linear-gradient(135deg, var(--soft-peach), var(--bronze));">
+              4
+            </div>
+            <h3 class="text-2xl font-bold mb-2" style="color: var(--dark-teal);">Testing & QA</h3>
+            <p style="color: var(--dark-teal); opacity: 0.7;">Ensuring quality and performance</p>
+          </div>
+          
+          <div class="phase-details hidden">
+            <div class="relative pl-6 space-y-4 border-l-2 mt-6" style="border-color: var(--soft-peach);">
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--soft-peach);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Cross-Browser Testing</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Chrome, Safari, Firefox, mobile devices</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--soft-peach);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Performance Optimization</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Speed, caching, and image optimization</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--soft-peach);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Security Audit</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Vulnerability scanning and fixes</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 inline-block px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(255, 203, 154, 0.15); color: var(--soft-peach);">
+              <i class="far fa-clock mr-2"></i>1-2 Weeks
+            </div>
+          </div>
+          
+          <div class="mt-6 flex items-center font-semibold group-hover:gap-2 transition-all" style="color: var(--soft-peach);">
+            <span class="view-text">View Details</span>
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+        
+        <!-- Phase 5: Deployment -->
+        <div class="phase-card glass rounded-3xl p-8 cursor-pointer group phase-5-gradient" onclick="toggleDetails(this)">
+          <div class="mb-6">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-4" style="background: linear-gradient(135deg, var(--dark-teal), var(--cyan-teal));">
+              5
+            </div>
+            <h3 class="text-2xl font-bold mb-2" style="color: var(--dark-teal);">Deployment</h3>
+            <p style="color: var(--dark-teal); opacity: 0.7;">Going live to the world</p>
+          </div>
+          
+          <div class="phase-details hidden">
+            <div class="relative pl-6 space-y-4 border-l-2 mt-6" style="border-color: var(--dark-teal);">
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--dark-teal);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Domain & SSL</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Domain connection and HTTPS setup</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--dark-teal);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Server Deployment</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Deploy to production hosting</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--dark-teal);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Final Checks</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Pre-launch verification and monitoring</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 inline-block px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(44, 53, 49, 0.1); color: var(--dark-teal);">
+              <i class="far fa-clock mr-2"></i>Included
+            </div>
+          </div>
+          
+          <div class="mt-6 flex items-center font-semibold group-hover:gap-2 transition-all" style="color: var(--dark-teal);">
+            <span class="view-text">View Details</span>
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+        
+        <!-- Phase 6: Maintenance -->
+        <div class="phase-card glass rounded-3xl p-8 cursor-pointer group phase-6-gradient" onclick="toggleDetails(this)">
+          <div class="mb-6">
+            <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-4" style="background: linear-gradient(135deg, var(--bronze), var(--dark-teal));">
+              6
+            </div>
+            <h3 class="text-2xl font-bold mb-2" style="color: var(--dark-teal);">Maintenance</h3>
+            <p style="color: var(--dark-teal); opacity: 0.7;">Ongoing support and updates</p>
+          </div>
+          
+          <div class="phase-details hidden">
+            <div class="relative pl-6 space-y-4 border-l-2 mt-6" style="border-color: var(--bronze);">
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--bronze);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Regular Updates</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Security patches and content updates</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color: var(--bronze);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">Automated Backups</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Daily backups and disaster recovery</p>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check-circle mt-1" style="color : var(--bronze);"></i>
+                  <div>
+                    <h4 class="font-semibold" style="color: var(--dark-teal);">24/7 Support</h4>
+                    <p class="text-sm" style="color: var(--dark-teal); opacity: 0.6;">Priority helpdesk access</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+            <div class="mt-6 inline-block px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(255, 203, 154, 0.1); color: var(--bronze);">
+              <i class="far fa-clock mr-2"></i>Ongoing
+          </div>
+          
 
-        <!-- CTA -->
-        <div class="mt-16 text-center">
-          <p class="text-[var(--light-mint)]/95 mb-4">
-            Need a custom solution? Let's discuss your project requirements.
-          </p>
-          <a
-            href="Contact.html"
-            class="inline-block px-8 py-4 rounded-full font-semibold 
-                   bg-gradient-to-r from-[var(--cyan-teal)] via-[var(--bronze)] to-[var(--soft-peach)]
-                   text-[var(--dark-teal)] shadow-lg hover:shadow-2xl hover:scale-105
-                   transition-all duration-300 border border-[var(--bronze)]/70"
-          >
-            Get in Touch
+          </div>
+          <div class="mt-6 flex items-center font-semibold group-hover:gap-2 transition-all" style="color: var(--bronze);">
+            <span class="view-text">View Details</span>
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- CTA Section -->
+      <div class="mt-24 text-center">
+        <div class="glass rounded-3xl p-12 max-w-3xl mx-auto">
+          <h3 class="text-3xl font-bold text-gray-900 mb-4">Ready to Start Your Project?</h3>
+          <p class="text-gray-600 text-lg mb-8">Let's discuss your vision and create something amazing together</p>
+          <a href="Contact.html" class="cta-button inline-flex items-center gap-3 px-8 py-4 rounded-full text-white font-semibold text-lg">
+            <span>Get in Touch</span>
+            <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
-    </section>
-
-    <script>
-      // Smooth animations for checklist items
-      document.querySelectorAll('.checklist-item').forEach(item => {
-        item.addEventListener('toggle', () => {
-          if (item.open) {
-            item.classList.add('shadow-lg');
-            item.style.backgroundColor = 'rgba(209, 232, 226, 0.35)'; // light mint tint
-          } else {
-            item.classList.remove('shadow-lg');
-            item.style.backgroundColor = '';
-          }
-        });
-      });
-
-      const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  entry.target.style.opacity = '1';
-                  entry.target.style.transform = 'translateY(0)';
-                  observer.unobserve(entry.target);
-              }
-          });
-      }, observerOptions);
-
-      document.querySelectorAll('.checklist-item').forEach(item => {
-          item.style.opacity = '0';
-          item.style.transform = 'translateY(20px)';
-          item.style.transition = 'all 0.6s ease-out';
-          observer.observe(item);
-      });
-
-      // Toggle plus/minus icons for <details>
-      document.querySelectorAll('.checklist-item').forEach(d => {
-        const icon = d.querySelector('.expand-icon');
-        if (!icon) return;
-        d.addEventListener('toggle', () => {
-          if (d.open) {
-            icon.classList.remove('fa-plus');
-            icon.classList.add('fa-minus');
-          } else {
-            icon.classList.remove('fa-minus');
-            icon.classList.add('fa-plus');
-          }
-        });
-      });
-
-      // Continuous type-and-delete loop for hero heading
-      (function () {
-        const el = document.getElementById('heroHeading');
-        const text = 'Smart Web Solutions for Every Brand';
-        const typeSpeed = 60;    // ms per char typing
-        const deleteSpeed = 36;  // ms per char deleting
-        const pauseAfterType = 1400;
-        const pauseAfterDelete = 500;
-
-        let idx = 0;
-        let typing = true;
-
-        function tick() {
-          if (typing) {
-            idx++;
-            el.textContent = text.slice(0, idx);
-            if (idx === text.length) {
-              typing = false;
-              setTimeout(tick, pauseAfterType);
-            } else {
-              setTimeout(tick, typeSpeed);
-            }
-          } else {
-            idx--;
-            el.textContent = text.slice(0, idx);
-            if (idx === 0) {
-              typing = true;
-              setTimeout(tick, pauseAfterDelete);
-            } else {
-              setTimeout(tick, deleteSpeed);
-            }
-          }
+      
+    </div>
+  </section>
+  
+  <script>
+    function toggleDetails(card) {
+      const details = card.querySelector('.phase-details');
+      const viewText = card.querySelector('.view-text');
+      const isHidden = details.classList.contains('hidden');
+      
+      // Close all other cards
+      document.querySelectorAll('.phase-card').forEach(c => {
+        if (c !== card) {
+          c.querySelector('.phase-details').classList.add('hidden');
+          c.querySelector('.view-text').textContent = 'View Details';
         }
-        // start after small delay
-        setTimeout(tick, 300);
-      })();
-
-      // Replace simple .timeline-dot placeholders with Font Awesome icons (using bronze accent)
-      (function () {
-        document.querySelectorAll('.timeline-dot').forEach(dot => {
-          dot.innerHTML = '<i class="fas fa-circle" style="color:var(--bronze);font-size:0.65rem;display:inline-block"></i>';
-        });
-      })();
-    </script>
-  </body>
+      });
+      
+      if (isHidden) {
+        details.classList.remove('hidden');
+        viewText.textContent = 'Hide Details';
+      } else {
+        details.classList.add('hidden');
+        viewText.textContent = 'View Details';
+      }
+    }
+    
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.phase-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(40px)';
+      card.style.transition = 'all 0.6s ease-out';
+      observer.observe(card);
+    });
+  </script>
+  
+</body>
 </html>

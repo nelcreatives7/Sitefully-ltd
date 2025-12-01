@@ -1,15 +1,15 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Portfolio | Sitefully</title>
+  <title>Portfolio | Sitefully</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://kit.fontawesome.com/a2e0e6ad62.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
   <style>
-    :root {
+    :root{
       --dark-teal: #2C3531;
       --cyan-teal: #116466;
       --bronze: #D9B08C;
@@ -17,206 +17,385 @@
       --light-mint: #D1E8E2;
     }
 
-    .gradient-header {
-      background: linear-gradient(135deg, var(--cyan-teal), var(--dark-teal));
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { font-family: 'Inter', system-ui, sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, var(--light-mint) 0%, #ffffff 100%);
+      min-height: 100vh;
+      color: var(--dark-teal);
     }
 
-    .gradient-title {
-      background: linear-gradient(to right, var(--cyan-teal), var(--bronze));
-      -webkit-background-clip: text;
-      color: transparent;
+    .glass {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--soft-peach);
     }
+
+    .blob {
+      mix-blend-mode: multiply;
+      filter: blur(80px);
+      opacity: 0.25;
+      border-radius: 50%;
+      position: absolute;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .blob-1 { background: var(--soft-peach); width: 350px; height: 350px; top: 10%; left: 15%; }
+    .blob-2 { background: var(--bronze); width: 350px; height: 350px; top: 30%; right: 10%; animation-delay:2s; }
+    .blob-3 { background: var(--cyan-teal); width: 350px; height: 350px; bottom: 15%; left: 45%; animation-delay:4s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--dark-teal);
+      border: 1px solid var(--soft-peach);
+      transition: 0.3s ease;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--cyan-teal);
+      color: white;
+      border-color: var(--cyan-teal);
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--bronze);
+      transition: 0.3s ease;
+      color: var(--dark-teal);
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border-color: var(--cyan-teal);
+    }
+
+    .modal-backdrop { backdrop-filter: blur(10px); background: rgba(0,0,0,0.5); }
+    .modal-content { animation: slideUp 0.4s ease; }
+    @keyframes slideUp { from {opacity:0; transform:translateY(50px);} to {opacity:1; transform:translateY(0);} }
+
+    .category-badge {
+      background: var(--light-mint);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      border: 1px solid var(--cyan-teal);
+      color: var(--dark-teal);
+    }
+
   </style>
 </head>
 
-<body class="antialiased text-[var(--dark-teal)] bg-[var(--light-mint)]">
+<body>
 
-<!-- ============================= -->
-<!-- 🧭 PAGE HEADER -->
-<!-- ============================= -->
-<header class="relative overflow-hidden gradient-header text-white py-20 md:py-28">
-  <div class="container mx-auto px-6 text-center relative z-10">
-<h1 class="text-4xl md:text-5xl font-extrabold gradient-title">
-        Our Recent Work</h1>
-        <p class="max-w-2xl mx-auto text-[var(--dark-teal)]/80">
-        Explore our collection of beautifully crafted websites, branding, and e-commerce projects that reflect our creativity and technical expertise.
+  <!-- BLOBS -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-20 pb-32 px-4 text-center">
+    <div class="max-w-4xl mx-auto space-y-6 relative z-10">
+      <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium border bg-white/70 border-[var(--soft-peach)] text-[var(--dark-teal)]">
+        🎨 Selected Works 2024
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-black leading-tight text-[var(--dark-teal)]">
+        Our Creative  
+        <span class="text-[var(--cyan-teal)]">Portfolio</span>
+      </h1>
+
+      <p class="text-xl md:text-2xl text-[var(--dark-teal)]/70 max-w-2xl mx-auto">
+        Discover our latest projects spanning web design, e-commerce, branding, and digital experiences.
       </p>
     </div>
-  </div>
+  </section>
 
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
-</header>
+  <!-- FILTER BUTTONS -->
+  <section class="pb-12 px-4">
+    <div class="flex flex-wrap gap-3 justify-center my-8">
+      <button class="filter-btn active px-5 py-2 rounded-full" data-filter="all">All</button>
+      <button class="filter-btn px-5 py-2 rounded-full" data-filter="web">Web</button>
+      <button class="filter-btn px-5 py-2 rounded-full" data-filter="ecommerce">Ecommerce</button>
+      <button class="filter-btn px-5 py-2 rounded-full" data-filter="dashboard">Dashboard</button>
+      <button class="filter-btn px-5 py-2 rounded-full" data-filter="branding">Branding</button>
+    </div>
+  </section>
 
-<!-- ============================= -->
-<!-- 💎 PORTFOLIO SECTION -->
-<!-- ============================= -->
-<section id="portfolio" class="relative py-20 md:py-28">
-  <div class="container mx-auto px-4 lg:px-8 relative z-10">
-         
+  <!-- PROJECT GRID -->
+  <section class="pb-32 px-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+      <!-- Projects will render here -->
+    </div>
+  </section>
 
-    <!-- Portfolio Grid -->
-    <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"></div>
+  <!-- MODAL -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+    <div class="modal-content glass rounded-3xl w-full max-w-5xl overflow-hidden shadow-2xl flex flex-col">
 
-    <!-- Modal -->
-    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-      <div class="bg-[var(--light-mint)] rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl border border-[var(--bronze)]">
-        
-        <div class="flex items-center justify-between p-5 border-b border-[var(--bronze)]/50 bg-[var(--cyan-teal)] text-white">
-          <h3 id="modalTitle" class="font-bold text-xl"></h3>
-          <button id="modalClose" class="text-2xl font-semibold hover:text-[var(--soft-peach)]">
-            &times;
-          </button>
-        </div>
+      <div class="flex items-center justify-between p-6 border-b border-[var(--soft-peach)] bg-[var(--cyan-teal)]">
+        <h3 id="modalTitle" class="font-bold text-2xl text-white">Sample Project</h3>
+        <button id="modalClose" class="text-3xl font-bold text-white hover:text-gray-200">×</button>
+      </div>
 
-        <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <img id="modalImage" src="" alt="" class="w-full h-56 object-cover rounded-lg shadow">
+      <div class="p-6 max-h-[80vh] overflow-y-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-          <div>
-            <p id="modalDesc" class="text-[var(--dark-teal)]/80 mb-4 leading-relaxed"></p>
+          <!-- Image -->
+          <div class="space-y-4">
+            <div class="mockup-screen bg-white rounded-lg shadow">
+              <div class="mockup-browser p-3 bg-[var(--light-mint)] border-b border-[var(--bronze)]">
+                <div class="browser-dots flex gap-2">
+                  <div class="browser-dot bg-red-500 w-3 h-3 rounded-full"></div>
+                  <div class="browser-dot bg-yellow-500 w-3 h-3 rounded-full"></div>
+                  <div class="browser-dot bg-green-500 w-3 h-3 rounded-full"></div>
+                </div>
+              </div>
+              <div class="website-preview">
+                <img id="modalImage" src="https://via.placeholder.com/400x300" class="w-full rounded-md">
+              </div>
+            </div>
+          </div>
 
-            <p class="text-sm text-[var(--dark-teal)]/70 mb-2">
-              <strong class="text-[var(--dark-teal)]">Tags:</strong>
-              <span id="modalTags" class="inline-flex flex-wrap gap-2 ml-1"></span>
-            </p>
+          <!-- Details -->
+          <div class="space-y-5">
 
-            <p class="text-sm text-[var(--dark-teal)]/70 mb-4">
-              <strong class="text-[var(--dark-teal)]">Reference:</strong>
-              <a id="modalRef" href="#" target="_blank" class="text-[var(--cyan-teal)] hover:underline">
-                View Source
-              </a>
-            </p>
+            <div>
+              <h4 class="text-sm font-semibold text-[var(--dark-teal)]/70 uppercase">Project Overview</h4>
+              <p id="modalDesc" class="text-[var(--dark-teal)]/80">This is a sample project description.</p>
+            </div>
 
-            <div class="flex flex-wrap items-center gap-3 mt-6">
+            <div>
+              <h4 class="text-sm font-semibold text-[var(--dark-teal)]/70 uppercase">Technologies</h4>
+              <div id="modalTags" class="flex flex-wrap gap-2">
+                <span class="category-badge">HTML</span>
+                <span class="category-badge">CSS</span>
+                <span class="category-badge">Tailwind</span>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-[var(--dark-teal)]/70 uppercase">Client</h4>
+              <p id="modalClient" class="text-[var(--dark-teal)]/80">Sitefully</p>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold text-[var(--dark-teal)]/70 uppercase">Duration</h4>
+              <p id="modalDuration" class="text-[var(--dark-teal)]/80">3 Months</p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-2">
               <a id="modalLive" href="#" target="_blank"
-                class="inline-block px-5 py-2 rounded-lg bg-[var(--cyan-teal)] text-white font-semibold hover:bg-[var(--dark-teal)] transition">
-                View Live
+                class="flex-1 text-center px-6 py-3 rounded-xl bg-[var(--cyan-teal)] text-white font-semibold hover:opacity-90">
+                <i class="fas fa-external-link-alt mr-2"></i>View Live
               </a>
-
               <button id="modalClose2"
-                class="ml-auto text-sm text-[var(--dark-teal)] hover:text-[var(--cyan-teal)]">
+                class="px-6 py-3 rounded-xl border-2 border-[var(--dark-teal)] text-[var(--dark-teal)] font-semibold hover:bg-[var(--light-mint)]">
                 Close
               </button>
             </div>
 
           </div>
+
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</section>
 
-<!-- ============================= -->
-<!-- ⚙️ PORTFOLIO SCRIPT -->
-<!-- ============================= -->
-<script>
-  const projects = [
-    {
-      id: "p1",
-      title: "Aurora Studio",
-      desc: "A modern portfolio site for a creative studio with smooth animations and clean layout.",
-      tags: ["Web Design", "Responsive"],
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80",
-      reference: "#",
-      live: "#",
-    },
-    {
-      id: "p2",
-      title: "GreenCart",
-      desc: "A sleek e-commerce website focused on user experience and product performance.",
-      tags: ["E-commerce", "UI/UX"],
-      image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&q=80",
-      reference: "#",
-      live: "#",
-    },
-    {
-      id: "p3",
-      title: "NovaTech Branding",
-      desc: "Brand identity and website for a fast-growing tech startup, designed for impact.",
-      tags: ["Branding", "Identity"],
-      image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&q=80",
-      reference: "#",
-      live: "#",
-    },
-    {
-      id: "p4",
-      title: "Bright Finance",
-      desc: "Corporate landing page and dashboard for a fintech startup with a professional aesthetic.",
-      tags: ["Fintech", "Dashboard"],
-      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80",
-      reference: "#",
-      live: "#",
-    },
-    {
-      id: "p5",
-      title: "Cedar Co.",
-      desc: "Minimalist website and branding for a boutique furniture brand.",
-      tags: ["Branding", "Web"],
-      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
-      reference: "#",
-      live: "#",
-    },
-    {
-      id: "p6",
-      title: "EduSmart",
-      desc: "An elegant e-learning platform design that integrates simplicity and usability.",
-      tags: ["E-learning", "UX/UI"],
-      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80",
-      reference: "#",
-      live: "#",
-    },
-  ];
+  <script>
+    // Project data
+    const projects = [
+     {
+        id: "p1",
+        title: "Aurora Studio",
+        desc: "A stunning portfolio website for a creative studio featuring smooth parallax animations, an immersive gallery, and a bold visual identity. Built with modern web technologies to ensure lightning-fast performance.",
+        category: "web",
+        tags: ["React", "Tailwind CSS", "Framer Motion", "Next.js"],
+        image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80",
+        client: "Aurora Creative Studio",
+        duration: "6 weeks",
+        live: "#",
+      },
+      {
+        id: "p2",
+        title: "GreenCart",
+        desc: "A comprehensive e-commerce platform specializing in organic products. Features include real-time inventory management, secure checkout, personalized recommendations, and an intuitive admin dashboard.",
+        category: "ecommerce",
+        tags: ["Shopify", "React", "Node.js", "Stripe API"],
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+        client: "GreenCart Inc.",
+        duration: "10 weeks",
+        live: "#",
+      },
+      {
+        id: "p3",
+        title: "NovaTech",
+        desc: "Complete brand identity and website redesign for a cutting-edge tech startup. Includes logo design, brand guidelines, marketing materials, and a responsive website with interactive 3D elements.",
+        category: "branding",
+        tags: ["Figma", "Adobe XD", "Three.js", "Vue.js"],
+        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=80",
+        client: "NovaTech Solutions",
+        duration: "8 weeks",
+        live: "#",
+      },
+      {
+        id: "p4",
+        title: "Bright Finance",
+        desc: "Sophisticated fintech platform with data visualization dashboards, real-time analytics, and secure user authentication. Built to handle complex financial calculations and transactions.",
+        category: "dashboard",
+        tags: ["React", "D3.js", "Python", "PostgreSQL"],
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
+        client: "Bright Finance Ltd",
+        duration: "12 weeks",
+        live: "#",
+      },
+      {
+        id: "p5",
+        title: "Cedar Co.",
+        desc: "Elegant e-commerce website for a boutique furniture brand. Features a minimalist design, high-quality product photography, 360° product views, and seamless checkout experience.",
+        category: "ecommerce",
+        tags: ["WordPress", "WooCommerce", "Custom Theme"],
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80",
+        client: "Cedar Furniture Co.",
+        duration: "7 weeks",
+        live: "#",
+      },
+      {
+        id: "p6",
+        title: "EduSmart",
+        desc: "Comprehensive e-learning platform with video streaming, interactive quizzes, progress tracking, and certification management. Designed for scalability and user engagement.",
+        category: "web",
+        tags: ["Django", "React", "AWS", "WebRTC"],
+        image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&q=80",
+        client: "EduSmart Academy",
+        duration: "14 weeks",
+        live: "#",
+      },
+      {
+        id: "p7",
+        title: "FitTrack Pro",
+        desc: "Modern fitness tracking dashboard with real-time health metrics, workout planning, nutrition tracking, and social features. Integrated with wearable devices for seamless data sync.",
+        category: "dashboard",
+        tags: ["React Native", "Firebase", "Chart.js"],
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
+        client: "FitTrack Technologies",
+        duration: "9 weeks",
+        live: "#",
+      },
+      {
+        id: "p8",
+        title: "Bloom Beauty",
+        desc: "Luxurious beauty brand website with product customization, virtual try-on features, and subscription management. Includes influencer partnership portal and rewards program.",
+        category: "ecommerce",
+        tags: ["Magento", "Vue.js", "AR.js"],
+        image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1200&q=80",
+        client: "Bloom Beauty Co.",
+        duration: "11 weeks",
+        live: "#",
+      },
+      {
+        id: "p9",
+        title: "Urban Brew",
+        desc: "Hip coffee shop chain website with online ordering, loyalty program, store locator, and event management. Features dynamic menu updates and seasonal campaigns.",
+        category: "web",
+        tags: ["React", "Express", "MongoDB", "Mapbox"],
+        image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1200&q=80",
+        client: "Urban Brew Coffee",
+        duration: "6 weeks",
+        live: "#",
+      },
+    ];
 
-  const grid = document.getElementById("projects-grid");
-  grid.innerHTML = projects.map(p => `
-    <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-[var(--bronze)] transition duration-500">
-      <div class="relative overflow-hidden">
-        <img src="${p.image}" alt="${p.title}" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-700">
-      </div>
+    let currentFilter = 'all';
 
-      <div class="p-6 space-y-3">
-        <h3 class="text-xl font-semibold text-[var(--dark-teal)]">${p.title}</h3>
-        <p class="text-[var(--dark-teal)]/70 text-sm">${p.desc}</p>
+    // Render projects
+    function renderProjects(filter = 'all') {
+      const grid = document.getElementById("projects-grid");
+      const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
 
-        <div class="flex flex-wrap gap-2 mt-3">
-          ${p.tags.map(t => `<span class="text-xs px-3 py-1 rounded-full bg-[var(--bronze)]/20 text-[var(--dark-teal)] font-medium">${t}</span>`).join("")}
+      grid.innerHTML = filtered.map(p => `
+        <div class="project-card glass rounded-2xl overflow-hidden shadow-xl cursor-pointer" onclick="openModal('${p.id}')">
+          <div class="relative overflow-hidden group">
+            <div class="mockup-browser p-3 bg-[var(--light-mint)] border-b border-[var(--bronze)]">
+              <div class="browser-dots flex gap-2">
+                <div class="browser-dot bg-red-500 w-3 h-3 rounded-full"></div>
+                <div class="browser-dot bg-yellow-500 w-3 h-3 rounded-full"></div>
+                <div class="browser-dot bg-green-500 w-3 h-3 rounded-full"></div>
+              </div>
+            </div>
+            <div class="website-preview">
+              <img src="${p.image}" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700 rounded-md">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+              <span class="text-white font-semibold flex items-center gap-2">View Project <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </div>
+
+          <div class="p-6 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold">${p.title}</h3>
+              <span class="category-badge">${p.category}</span>
+            </div>
+            <p class="text-[var(--dark-teal)]/70 text-sm line-clamp-2">${p.desc}</p>
+            <div class="flex flex-wrap gap-2">
+              ${p.tags.slice(0,3).map(t => `<span class="category-badge">${t}</span>`).join('')}
+              ${p.tags.length > 3 ? `<span class="category-badge">+${p.tags.length-3}</span>` : ''}
+            </div>
+          </div>
         </div>
+      `).join('');
+    }
 
-        <button onclick="openModal('${p.id}')" class="mt-4 inline-flex items-center text-[var(--cyan-teal)] font-semibold hover:underline">
-          View Details <i class="fa-solid fa-arrow-right ml-2"></i>
-        </button>
-      </div>
-    </div>
-  `).join("");
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        renderProjects(filter);
+      });
+    });
 
-  const modal = document.getElementById("projectModal");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalImage = document.getElementById("modalImage");
-  const modalDesc = document.getElementById("modalDesc");
-  const modalTags = document.getElementById("modalTags");
-  const modalRef = document.getElementById("modalRef");
-  const modalLive = document.getElementById("modalLive");
-  const closeBtns = [document.getElementById("modalClose"), document.getElementById("modalClose2")];
+    // Modal
+    const modal = document.getElementById("projectModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalImage = document.getElementById("modalImage");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalTags = document.getElementById("modalTags");
+    const modalClient = document.getElementById("modalClient");
+    const modalDuration = document.getElementById("modalDuration");
+    const modalLive = document.getElementById("modalLive");
+    const closeBtns = [document.getElementById("modalClose"), document.getElementById("modalClose2")];
 
-  function openModal(id) {
-    const p = projects.find(pr => pr.id === id);
-    modalTitle.textContent = p.title;
-    modalImage.src = p.image;
-    modalDesc.textContent = p.desc;
-    modalTags.innerHTML = p.tags.map(t => `<span class="text-xs px-2 py-1 bg-[var(--bronze)]/30 rounded">${t}</span>`).join(" ");
-    modalRef.href = p.reference;
-    modalLive.href = p.live;
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-  }
+    function openModal(id) {
+      const p = projects.find(pr => pr.id === id);
+      modalTitle.textContent = p.title;
+      modalImage.src = p.image;
+      modalDesc.textContent = p.desc;
+      modalClient.textContent = p.client;
+      modalDuration.textContent = p.duration;
+      modalTags.innerHTML = p.tags.map(t => `<span class="category-badge">${t}</span>`).join('');
+      modalLive.href = p.live;
+      modal.classList.remove('hidden'); modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
 
-  function closeModal() {
-    modal.classList.add("hidden");
-  }
+    function closeModal() {
+      modal.classList.add('hidden'); modal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
 
-  closeBtns.forEach(btn => btn.addEventListener("click", closeModal));
-  modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
-</script>
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+    modal.addEventListener('click', e => { if(e.target===modal) closeModal(); });
 
+    // Initial render
+    renderProjects();
+  </script>
 </body>
 </html>
